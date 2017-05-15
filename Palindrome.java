@@ -18,15 +18,15 @@ public class Main {
         while (i<j)
         {
             //no signs or space sensitive
-            if(!Character.isLetterOrDigit(s.charAt(i)))
+            if(!Character.isLetterOrDigit(s.charAt(i)))//only letter or digit is True
             {
                 i++;
-                continue;
+                continue;//end current loop
             }
             if(!Character.isLetterOrDigit(s.charAt(j)))
             {
                 j--;
-                continue;
+                continue;//end current loop
             }
             //compare characters accordingly
             if(s.charAt(i)!=s.charAt(j))
