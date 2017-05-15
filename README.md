@@ -1,4 +1,4 @@
-# LC-Practice
+# LC Practice
 
 * [Palindrome](https://github.com/ly16/LC-Practice/blob/master/Palindrome.java)
 * [String to Integer](https://github.com/ly16/LC-Practice/blob/master/String%20to%20Integer.java)
