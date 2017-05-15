@@ -15,10 +15,9 @@ public class School {
     public void setName(String name)
     {
         this.name=name;//refer to any member of the current object from within an instance method or a constructor by using this
-    }
-   
+    }  
     
-     public String getName()
+public String getName()
      {
          return this.name;
      }
