@@ -7,3 +7,4 @@
 * [Rectangle Area](https://github.com/ly16/LC-Practice/blob/master/rectangle%20area.java)
 * [setter and getter](https://github.com/ly16/LC-Practice/blob/master/setter%20and%20getter.java)
 * [Lowercase to Uppercase II](https://github.com/ly16/LC-Practice/blob/master/Lowercase%20to%20Uppercase%20II.java)
+* [ArrayList](https://github.com/ly16/LC-Practice/blob/master/ArrayList.java)
