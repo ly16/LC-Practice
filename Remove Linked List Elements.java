@@ -26,11 +26,11 @@ public class Solution {
         while(head.next!=null)
         {
             if(head.next.val!=val)
-        {
+            {
                head=head.next;        //move heaad
-        }else{
+            }else{
             head.next=head.next.next;   //remove val
-        }
+            }
         }
         return dummy.next;
     }
