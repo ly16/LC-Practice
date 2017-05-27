@@ -37,7 +37,7 @@ public class MyQueue implements InterfaceQueue {
         if (first == null) {
             first=last= new Node(val);
         } else {
-            last.next = new Node(val);;
+            last.next = new Node(val);
             last = last.next;
         }
     }
