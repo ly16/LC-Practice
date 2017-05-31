@@ -1,4 +1,4 @@
-/*
+/**
 Implement the class ReferenceManager. Include the following two methods:
 
 copyValue(Node obj). This would just copy the value from parameter obj to the public attribute node. But obj and node are still two difference instances / objects.
