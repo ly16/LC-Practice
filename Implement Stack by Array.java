@@ -13,7 +13,7 @@ isEmpty() // return false
 class Stack {
     // Push a new item into the stack
     
-      public List<Integer> array = new ArrayList<Integer>();
+    public List<Integer> array = new ArrayList<Integer>();
 
     public void push(int x) {
         // Write your code here
@@ -24,7 +24,8 @@ class Stack {
     public void pop() {
         // Write your code here
         int n=array.size();
-        if (n > 0)
+        //if (n > 0)
+        if (!isEmpty())
             array.remove(n-1);
     }
 
