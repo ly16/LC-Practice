@@ -42,9 +42,7 @@ public class Solution {
         if(root==null){
             return;
         }
-        if(depth>maxDepth){
-            maxDepth=depth;
-        }
+        maxDepth=Math.max(maxDepth,depth);
         helper(root.left, depth+1);
         helper(root.right, depth+1);
     }
