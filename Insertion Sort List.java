@@ -27,7 +27,7 @@ public class Solution {
            while(cur.next!=null && cur.next.val < head.val){
                cur=cur.next;
            }
-           // exchange orders
+           // swap orders
            ListNode t= head.next;
            head.next= cur.next;
            cur.next= head;
