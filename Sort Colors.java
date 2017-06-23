@@ -18,7 +18,7 @@ class Solution {
      */
     public void sortColors(int[] nums) {
         // write your code here
-        if(nums == null || nums.length==0){
+        if(nums == null || nums.length<=1){
             return;
         }
         
