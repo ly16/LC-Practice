@@ -30,7 +30,7 @@ public class Solution {
         if (index == result.length()) {
             return "0";
         }
-        return result;
+        return result.substring(index);
     }
     
     class NumberComparator implements Comparator<String>{
