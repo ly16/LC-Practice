@@ -65,7 +65,6 @@ public class Solution {
         } else {
             node1Prev.next = node2;
             node2.next = node1.next;
-            
             node2Prev.next = node1;
             node1.next = node2Next;
         }
