@@ -30,6 +30,7 @@ public class Solution {
      * @param root: The root of binary tree.
      * @return: Inorder in ArrayList which contains node values.
      */
+    //result is not a symbol in traverse, if we initiate result in inordertraversal
     ArrayList<Integer> result= new ArrayList<>();
     public ArrayList<Integer> inorderTraversal(TreeNode root) {
         // write your code here
