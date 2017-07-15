@@ -43,4 +43,4 @@ class Solution {
             if (dictionary[i].length()==max) answer.add(dictionary[i]);
         return answer;
     }
-};
+}
