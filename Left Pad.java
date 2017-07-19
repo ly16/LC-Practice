@@ -33,7 +33,8 @@ public class StringUtils {
      */
     static public String leftPad(String originalStr, int size, char padChar) {
         // Write your code here
-        StringBuffer sb= new StringBuffer();
+        //StringBuffer sb= new StringBuffer();
+        StringBuilder sb= new StringBuilder();
         // Compensition
         for(int i=0; i<size-originalStr.length(); i++){
             sb.append(padChar);
