@@ -12,7 +12,7 @@ find the position of pivot
 1 -3 2 6 4
 then
 -3 1 2 6 4 for the left
--3 1 2 4 6
+-3 1 2 4 6 for the right
 */
 
 public class Solution {
