@@ -7,6 +7,9 @@ Ugly numbers are positive numbers whose prime factors only include 2, 3, 5. For 
 Example
 Given num = 8 return true
 Given num = 14 return false
+
+Notice
+Note that 1 is typically treated as an ugly number.
 */
 
 public class Solution {
