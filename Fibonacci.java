@@ -8,6 +8,7 @@ The i th number is the sum of i-1 th number and i-2 th number.
 The first ten numbers in Fibonacci sequence is:
 
 0, 1, 1, 2, 3, 5, 8, 13, 21, 34 ...
+1  2  3  4  ...     ...      k  ...
 
 Example
 Given 1, return 0
@@ -25,14 +26,15 @@ class Solution {
      */
     public int fibonacci(int n) {
         // write your code here
-        int a=0;
-        int b=1;
-        for(int i=1;i<n;i++){
-            int sum=a+b;
+        long a=0;
+        long b=1;
+        
+        for(int i = 3;i <= n;i++){
+            long temp=a+b;
             a=b;
-            b=sum;
+            b=temp;
         }
-        return a;
+        return b;
     }
 }
 
