@@ -31,7 +31,7 @@ public class Solution {
       return newNode;
     }
     // 2. value insert in the middle
-    ListNode prev = head;
+    ListNode prev = head;         //hold the head 
     while(prev.next != null && prev.next.value < value){
       prev = prev.next;
     }
