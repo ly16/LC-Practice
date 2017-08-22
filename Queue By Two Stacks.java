@@ -22,7 +22,7 @@ public class Solution {
   
   public Integer poll() {
     move();  //if out stack is empty, remove from in to out stack
-    return out.isEmpty() ? null : out.pollFirst();
+    return out.isEmpty() ? null : out.pollFirst();  // if both stacks are empty, return null
   }
   
   public void offer(int element) {  // push into the in stack
@@ -30,8 +30,8 @@ public class Solution {
   }
   
   public Integer peek() {
-    move();
-    return out.isEmpty() ? null : out.peekFirst();
+    move(); //check it firstly
+    return out.isEmpty() ? null : out.peekFirst();  //if both stacks are empty, return null
   }
   
   public void move(){
