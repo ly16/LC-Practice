@@ -29,6 +29,8 @@ cur             stack   inOrder
 4.right=5         5      1 2 3 4
 5.left=null       5    1 2 3 4 5
 5.right=null    null
+
+time = O(n), n is # of node
 */
 
 
