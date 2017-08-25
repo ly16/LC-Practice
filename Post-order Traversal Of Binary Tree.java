@@ -20,14 +20,14 @@ What if the given binary tree is null? Return an empty list in this case.
 Steps:
 cur           stack             list
 5
-null            3                5
-null           3 1                5
-null     3.left=null             5 
-null     3.right=null            5
-null        3  1 4               5
-null     4.left=null             5
-null     4.right=null            5
-null 
+null           3 8               5
+8              8.left=null       5 8
+8              3 11              5 8
+11             3                 5 8 11
+3              1  4              5 8 11 3
+4              1                 5 8 11 3 4
+1              null              5 8 11 3 4 1
+reverse：1 4 3 11 8 5
 */
 
 
