@@ -27,7 +27,8 @@ and
           1     4
 
 the two binary trees are tweaked identical.
-time = 4^height = 4^log_2(n) = O(n^2)
+time = 4^height = 4^log_2(n) = O(n^2) for balanced
+time = 4^height = 4^n = O(2^n) for unbalanced
 */
 
 
