@@ -28,8 +28,8 @@ public class Solution {
     visited[0][0] = true;
     
     // Best First Search
-    for(int i = 0; i< k - 1; i++){
-      Cell cur = minHeap.poll();
+    for(int i = 0; i< k - 1; i++){  // poll k-1 elemets smaller, peek kth 
+      Cell cur = minHeap.poll();    
       // not boundary or generated before
       // check row
       if(cur.row + 1 < rows && !visited[cur.row + 1][cur.column]){
@@ -57,5 +57,3 @@ public class Solution {
     }
   }
 }
-
-
