@@ -46,7 +46,7 @@ public class Solution {
     }
   }
   
-  private void swap(char[] array, int left, int right) {
+ private void swap(char[] array, int left, int right) {
     char temp = array[left];    // type is char
     array[left] = array[right];
     array[right] = temp;
