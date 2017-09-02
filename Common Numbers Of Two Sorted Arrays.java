@@ -16,8 +16,8 @@ public class Solution {
     // Write your solution here.List<Integer> 
      List<Integer> common = new ArrayList<Integer>();
 	   int i = 0, j = 0;
-	   while (i < A.size() && j < B.size()) { //size()
-	      if (A.get(i) == B.get(j)) { //.get() for List
+	   while (i < A.size() && j < B.size()) { //size(), length for int[]
+	      if (A.get(i) == B.get(j)) { //.get() for List, A[i] for int[]
 	        common.add(A.get(i));
 	        i++;
 	        j++;
