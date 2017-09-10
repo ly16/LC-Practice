@@ -14,6 +14,14 @@ Composition = ["a", "a", "b", "b", "b", "b", "c", "c", "c", "d"], top 2 frequent
 Composition = ["a", "a", "b", "b", "b", "b", "c", "c", "c", "d"], top 4 frequent words are [“b”, “c”, "a", "d"]
 Composition = ["a", "a", "b", "b", "b", "b", "c", "c", "c", "d"], top 5 frequent words are [“b”, “c”, "a", "d"]
 
+time:
+insert O((n-k)log(k))
+heapify O(k)
+time = O(k + (n-k)log(k))
+
+space:
+hashMap: O(n)
+MinHeap: O(log(k))//??
 */
 
 public class Solution {
