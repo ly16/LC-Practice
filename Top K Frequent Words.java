@@ -21,7 +21,8 @@ time = O(k + (n-k)log(k))
 
 space:
 hashMap: O(n)
-MinHeap: O(log(k))//??
+MinHeap: O(k)
+space = O(n+k) = O(n)
 */
 
 public class Solution {
