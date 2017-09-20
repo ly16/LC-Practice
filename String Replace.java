@@ -8,11 +8,80 @@ input, S and T are not null, S is not empty string
 
 e.g.
 input = "appledogapple", S = "apple", T = "cat" -> "catdogcat"
-input = "appledogapple", S = "apple", T = "banana" -> "bananadogbanana"
+input = "appledogapplem", S = "apple", T = "banana" -> "bananadogbananam"
 
 steps:
-if s.length() >= t.length()
 
+if s.length() >= t.length()
+appledogapple
+s
+f(true)
+
+catledogapple
+   s
+     f
+     
+catdedogapple
+    s
+      f
+      
+catdodogapple
+     s
+       f 
+
+catdogogapple
+      s
+        f(true)
+  
+
+catdogogapple
+      s
+        f(true)
+        
+catdogcatpple
+         s
+             f(false)
+        
+return "catdogcat"
+
+
+
+if s.length() < t.length()
+appledogapplem__
+             s(false)
+               f
+               
+appledogapplem_m
+            s(true)
+              f
+          
+          
+appledogapplem_m
+            s(true)
+              f
+              
+appledogabananam
+       s(false) 
+        f
+        
+
+appledoggbananam
+      s 
+       f
+       
+appledoogbananam
+     s 
+      f
+      
+appleddogbananam
+    s 
+     f
+     
+ bananadogbananam
+s 
+f
+
+return "bananadogbananam"
 */
 
 
@@ -34,7 +103,7 @@ public class Solution {
         int fast = 0;
         while (fast < input.length) {
             // find the starting point, copy t at slow pointer
-            if (fast <= input.length -s.length() && equalSubstring(input, fast, s)) {
+            if (fast <= input.length - s.length() && equalSubstring(input, fast, s)) {
                 copySubstring(input, slow, t);
                 slow += t.length();
                 fast += s.length();
