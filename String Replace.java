@@ -66,15 +66,15 @@ appledogabananam
         
 
 appledoggbananam
-      s 
+      s (false)
        f
        
 appledoogbananam
-     s 
+     s (false)
       f
       
 appleddogbananam
-    s 
+    s (true)
      f
      
  bananadogbananam
