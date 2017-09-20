@@ -19,24 +19,20 @@ f(true)
 
 catledogapple
    s
-     f
+     f(false)
      
 catdedogapple
     s
-      f
+      f(false)
       
 catdodogapple
      s
-       f 
+       f (false)
 
 catdogogapple
       s
         f(true)
-  
-
-catdogogapple
-      s
-        f(true)
+        
         
 catdogcatpple
          s
