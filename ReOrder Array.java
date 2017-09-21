@@ -22,7 +22,8 @@ steps:
        
 return 1 4 3 5 2 6
 
-time = 
+time = O(nlogn)
+space = O(logn)
 */
 
 public class Solution {
