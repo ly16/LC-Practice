@@ -23,7 +23,7 @@ steps:
 return 1 4 3 5 2 6
 
 time = O(nlogn)
-space = O(logn)
+space = O(n) = O(2^logn)= 1+2+4+..+n 
 */
 
 public class Solution {
