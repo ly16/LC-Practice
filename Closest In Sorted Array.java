@@ -35,6 +35,5 @@ public class Solution {
     } else {
       return left;
     }
-    
   }
 }
