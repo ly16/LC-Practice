@@ -15,50 +15,51 @@ then
 -3 1 2 4 6 for the right
 */
 
+
 public class Solution {
   public int[] quickSort(int[] array) {
     // Write your solution here
-    if(array==null || array.length <= 1){
+    if (array == null || array.length <= 1) {
       return array;
     }
-    quickSort(array, 0, array.length-1);
-      return array;
+    quickSort(array, 0, array.length - 1);
+    return array;
   }
-  public void quickSort(int[] array, int left, int right){
-    //if left==pivotPos, left>pivotPos-1
-    if(left >= right){
+  
+  private void quickSort(int[] array, int left, int right) {
+    if (left >= right) {
       return;
     }
     int pivotPos = partition(array, left, right);
-    // exclude pivot
     quickSort(array, left, pivotPos - 1);
     quickSort(array, pivotPos + 1, right);
   }
-  private int partition(int[] array, int left, int right){
-    int pivoti = pivoti(left, right);
-    int pivot = array[pivoti];
-    // swap pivot to the right end of the array
-    swap(array, pivoti, right);
-    int li = left;
-    int ri = right - 1;
-    while(li <= ri){
-      if(array[li] < pivot){
-        li++;
-      }else if(array[ri] >= pivot){
-        ri--;
-      }else{
-        swap(array, li++, ri--);    // stop when both are stucked
+  
+  private int partition(int[] array, int left, int right) {
+    int pivotIndex = getPivot(left, right);
+    int pivot = array[pivotIndex];
+    swap(array, pivotIndex, right);
+    // two pointers
+    int leftIndex = left;
+    int rightIndex = right - 1;
+    while (leftIndex <= rightIndex) {
+      if (array[leftIndex] < pivot) {
+        leftIndex++;
+      } else if (array[rightIndex] > pivot) {
+        rightIndex--;
+      } else {
+        swap(array, leftIndex++, rightIndex--);
       }
     }
-    //swap pivot to the correct position
-    swap(array, li, right);
-    return li;
+    swap(array, leftIndex, right);
+    return leftIndex;
   }
-  //choose pivot randomly
-  private int pivoti(int left, int right){
-    return left + (int)(Math.random() * (right-left+1));
+  
+  private int getPivot(int left, int right) {
+    return left + (int) (Math.random() * (right - left + 1));
   }
-  private void swap(int[] array, int left, int right){
+  
+  private void swap(int[] array, int left, int right) {
     int temp = array[left];
     array[left] = array[right];
     array[right] = temp;
