@@ -1,5 +1,7 @@
 /*
 Given an array of integers, sort the elements in the array in ascending order. 
+time = O(nlog(n)) on average = O(n^2) worst case
+space = O(log(n)) on average = O(n) worst case
 
 Example
 {4, 2, -3, 6, 1} is sorted to {-3, 1, 2, 4, 6}
