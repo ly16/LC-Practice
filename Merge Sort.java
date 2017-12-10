@@ -21,17 +21,16 @@ space=o(n)
 public class Solution {
   public int[] mergeSort(int[] array) {
     // Write your solution here.
-    if(array==null || array.length <= 1){
+    if (array == null || array.length <= 1) {
       return array;
     }
-    int[] helper= new int[array.length];
-    mergeSort(array, helper, 0, array.length-1);
+    int[] helper = new int[array.length];
+    mergeSort(array, helper, 0, array.length - 1);
     return array;
   }
   
-  private void mergeSort(int[] array, int[] helper, int left, int right){
-    // seperate until single element
-    if(left == right){
+  private void mergeSort(int[] array, int[] helper, int left, int right) {
+    if (left >= right) {
       return;
     }
     int mid = left + (right - left) / 2;
@@ -40,24 +39,22 @@ public class Solution {
     merge(array, helper, left, mid, right);
   }
   
-  private void merge(int[] array, int[] helper, int left, int mid, int right){
-    for(int i = left; i <= right; i++){
+  private void merge(int[] array, int[] helper, int left, int mid, int right) {
+    for (int i = left; i <= right; i++) {
       helper[i] = array[i];
     }
-    int li = left;
-    int ri = mid + 1;
-    while(li <= mid && ri <= right){
-      // Move the smaller one
-      if(helper[li] <= helper[ri]){
-        array[left++] = helper[li++];
-      }else{
-        array[left++] = helper[ri++];
+    int leftIndex = left;
+    int rightIndex = mid + 1;
+    while (leftIndex <= mid && rightIndex <= right) {
+      if (helper[leftIndex] < helper[rightIndex]) {
+        array[left++] = helper[leftIndex++];
+      } else {
+        array[left++] = helper[rightIndex++];
       }
     }
-    /* if there are some elements at left side, move into the array, but we do 
-    ** not move right side since already in their right positions*/
-    while(li <= mid){
-      array[left++] = helper[li++];
+    // if there are still items in left part
+    while (leftIndex <= mid) {
+      array[left++] = helper[leftIndex++];
     }
   }
 }
