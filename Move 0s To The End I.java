@@ -17,26 +17,33 @@ end
 public class Solution {
   public int[] moveZero(int[] array) {
     // Write your solution here.
-    if (array == null || array.length <= 1){
+    if (array == null || array.length <= 1) {
       return array;
     }
-    int right = array.length - 1;
-    int i = 0;
-    // swap when array[i] == 0, but array[right] != 0
-    while (i <= right){
-      if (array[i] != 0){
-        i++;
-      } else if (array[right] == 0) {
-        right--;
+    moveZero(array, 0, array.length - 1);
+    return array;
+  }
+  
+  private void moveZero(int[] array, int left, int right) {
+    if (left >= right) {
+      return;
+    }
+    int leftIndex = left;
+    int rightIndex = right;
+    while (leftIndex <= rightIndex) {
+      if (array[leftIndex] != 0) {
+        leftIndex++;
+      } else if (array[rightIndex] == 0) {
+        rightIndex--;
       } else {
-        swap(array, i++, right--);
+        swap(array, leftIndex++, rightIndex--);
       }
     }
-    return array;
-  }    
-   private void swap(int[] array, int left, int right){
-     int temp = array[left];
-     array[left] = array[right];
-     array[right] = temp;
-   }
+  }
+  
+  private void swap(int[] array, int left, int right) {
+    int temp = array[left];
+    array[left] = array[right];
+    array[right] = temp;
+  }
 }
