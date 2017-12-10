@@ -19,9 +19,9 @@ public class Solution {
     if (array == null || array.length <= 1) {
       return array;
     }
-    int min;
+    
     for (int i = 0; i < array.length - 1; i++) {
-      min = i;
+      int min = i;
       for (int j = i + 1; j < array.length; j++) {
         if (array[j] < array[min]) {
           min = j;
