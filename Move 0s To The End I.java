@@ -14,6 +14,8 @@ end
 
 the left part of leftIndex is !=0, exclude leftIndex;
 the right part of rightIndex is ==0, exclude rightIndex.
+time = O(n)
+space = O(1)
 */
 
 
