@@ -16,25 +16,26 @@ steps:
 public class Solution {
   public int[] solve(int[] array) {
     // Write your solution here.
-    if(array==null || array.length<=1){
+    if (array == null || array.length <= 1) {
       return array;
     }
-    for(int i=0; i < array.length-1; i++){
-      int min=i;
-      // Find the min value of the right, and give index to min
-      for(int j=i+1; j < array.length; j++){
-        if(array[j] < array[min]){
-          min=j;
+    int min;
+    for (int i = 0; i < array.length - 1; i++) {
+      min = i;
+      for (int j = i + 1; j < array.length; j++) {
+        if (array[j] < array[min]) {
+          min = j;
         }
       }
-      swap(array, i, min);
+      swap (array, i, min);
     }
     return array;
   }
   
-  public void swap(int[] array, int left, int right){
-    int temp=array[left];
-    array[left]=array[right];
-    array[right]=temp;
+  public void swap(int[]array, int left, int right) {
+    int temp = array[left];
+    array[left] = array[right];
+    array[right] = temp;
   }
 }
+
