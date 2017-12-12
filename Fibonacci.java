@@ -17,24 +17,24 @@ Given 2, return 1
 
 Given 10, return 34
 
+time = O(n)
+space = O(1)
 */
 
-class Solution {
-    /**
-     * @param n: an integer
-     * @return an integer f(n)
-     */
-    public int fibonacci(int n) {
-        // write your code here
-        long a=0;
-        long b=1;
-        
-        for(int i = 3;i <= n;i++){
-            long temp=a+b;
-            a=b;
-            b=temp;
-        }
-        return b;
+public class Solution {
+  public long fibonacci(int K) {
+    if (K <= 0) {
+      return 0;
     }
+    long a = 0;
+    long b = 1;
+    while (K > 1) {
+      long temp = a + b;
+      a = b;
+      b = temp;
+      K--;
+    }
+    return b;
+  }
 }
 
