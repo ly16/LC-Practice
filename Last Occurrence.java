@@ -12,33 +12,34 @@ l   m   r
 1 2 2 2 3
       l r
 check the array[r] and array[l]
+
+time = O(log(n))
+space = O(1)
 */
 
 public class Solution {
   public int lastOccur(int[] array, int target) {
     // Write your solution here
-    if(array == null || array.length == 0){
+    if (array == null || array.length == 0) {
       return -1;
     }
     int left = 0;
     int right = array.length - 1;
-    while(left + 1 < right){
+    while (left + 1 < right) {
       int mid = left + (right - left) / 2;
-      if (array[mid] == target){
+      if (array[mid] <= target) {
         left = mid;
-      } else if (array[mid] < target){
-        left = mid + 1;
       } else {
-        right = mid - 1;
+        right = mid;
       }
     }
-    // check the right side for the last occurrence
-    if(array[right] == target){
+    
+    if (array[right] == target) {
       return right;
-    }
-    if(array[left] == target){
+    } else if (array[left] == target) {
       return left;
     }
     return -1;
   }
 }
+
