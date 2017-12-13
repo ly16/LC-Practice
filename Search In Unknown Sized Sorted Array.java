@@ -22,6 +22,10 @@ l m r
 1 2 5 9
     m
 return 5
+
+
+time = O(log_2(n) + log_2(2n)) = O(log(n))
+space = O(1)
 */
 
 
