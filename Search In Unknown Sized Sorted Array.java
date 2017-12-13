@@ -68,21 +68,3 @@ public class Solution {
     return -1;
   }
 }
-
-
-
-  
-  private int binarySearch(Dictionary dict, int target, int left, int right){
-    while(left <= right){
-      int mid = left + (right - left) / 2;
-      if(dict.get(mid) == null || dict.get(mid) > target){
-        right = mid - 1;
-      } else if (dict.get(mid) < target){
-        left = mid + 1;
-      } else {  // can‘t check dict.get(mid) first, for null pointer exception
-        return mid;
-      }
-    }
-    return -1;
-  }
-}
