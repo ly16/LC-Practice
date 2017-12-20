@@ -10,6 +10,9 @@ s l l l s
 small -> 2 ->1
 large -> 4 -> 3 -> 5 
 small -> 2 -> 1 -> 4 -> 3 -> 5 -> null
+
+time = O(n)
+space = O(n)
 */
 
 /**
@@ -25,28 +28,27 @@ small -> 2 -> 1 -> 4 -> 3 -> 5 -> null
 public class Solution {
   public ListNode partition(ListNode head, int target) {
     // write your solution here
-    if(head == null || head.next == null){
+    if (head == null || head.next == null) {
       return head;
     }
-    ListNode small = new ListNode(0);
-    ListNode large = new ListNode(0);
-    // Hold the head
-    ListNode curS = small;
-    ListNode curL = large;
-    while(head != null){
-      if(head.value < target){
-        curS.next = head;
-        curS = curS.next;
+    ListNode smallHead = new ListNode(0);
+    ListNode small = smallHead;
+    ListNode LargeHead = new ListNode(0);
+    ListNode large = LargeHead;
+    
+    while (head != null) {
+      if (head.value < target) {
+        small.next = head;
+        small = small.next;
       } else {
-        curL.next = head;
-        curL = curL.next;
+        large.next = head;
+        large = large.next;
       }
       head = head.next;
     }
-    // connect the tail of small to the head of large
-    curS.next = large.next;
-    // avoid loop, put the tail of large to null
-    curL.next = null;
-    return small.next;
+    
+    small.next = LargeHead.next;
+    large.next = null;
+    return smallHead.next;
   }
 }
