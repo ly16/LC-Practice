@@ -10,6 +10,9 @@ head = 1
 prev = 1
 head = null
 return prev = 1
+
+time = O(n)
+space = O(1)
 */
 
 
@@ -26,12 +29,16 @@ return prev = 1
 public class Solution {
   public ListNode reverse(ListNode head) {
     // write your solution here
+    if (head == null || head.next == null) {
+      return head;
+    }
+    ListNode cur = head;
     ListNode prev = null;
-    while(head != null){
-      ListNode next = head.next;  // hold next head
-      head.next = prev; //reverse
-      prev = head;  // move forward
-      head = next;
+    while (cur != null) {
+      ListNode next = cur.next;
+      cur.next = prev;
+      prev = cur;
+      cur = next;
     }
     return prev;
   }
