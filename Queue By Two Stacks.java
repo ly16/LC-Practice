@@ -6,14 +6,15 @@ When the queue is empty, poll() and peek() should return null.
 Assump:
 Elements are all Integers.
 
+amortized time = O(1)
+space = O(n)
 */
 
 
 
 public class Solution {
-  private LinkedList<Integer> in; // insert into in stack
-  private LinkedList<Integer> out;  // remove from out stack
-  
+  private Deque<Integer> in;
+  private Deque<Integer> out;
   public Solution() {
     // Write your solution here.
     in = new LinkedList<Integer>();
@@ -21,25 +22,25 @@ public class Solution {
   }
   
   public Integer poll() {
-    move();  //if out stack is empty, remove from in to out stack
-    return out.isEmpty() ? null : out.pollFirst();  // if both stacks are empty, return null
+    move();
+    return out.isEmpty() ? null : out.pollFirst();
   }
   
-  public void offer(int element) {  // push into the in stack
-    in.offerFirst(element); 
+  public void offer(int element) {
+    in.offerFirst(element);
   }
   
   public Integer peek() {
-    move(); //check it firstly
-    return out.isEmpty() ? null : out.peekFirst();  //if both stacks are empty, return null
+    move();
+    return out.isEmpty() ? null : out.peekFirst();
   }
   
-  public void move(){
-    if(out.isEmpty()){
-      while(!in.isEmpty()){
+  public void move() {
+    if (out.isEmpty()) {
+      while (!in.isEmpty()) {
         out.offerFirst(in.pollFirst());
       }
-    }  
+    }
   }
   
   public int size() {
@@ -47,11 +48,9 @@ public class Solution {
   }
   
   public boolean isEmpty() {
-    return in.size() == 0 && out.size() == 0;
+    return (in.size() == 0 && out.size() == 0);
   }
 }
-
-
 
 
 
