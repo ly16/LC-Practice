@@ -29,10 +29,10 @@ dummy -> 1 -> 2 -> 4 -> 5
 
 one != null
 dummy -> 1 -> 2 -> 4 -> 5 -> 6
+
+time = O(m+n)
+space = O(m+n)
 */
-
-
-
 
 /**
  * class ListNode {
@@ -47,10 +47,11 @@ dummy -> 1 -> 2 -> 4 -> 5 -> 6
 public class Solution {
   public ListNode merge(ListNode one, ListNode two) {
     // write your solution here
+
     ListNode dummy = new ListNode(0);
-    ListNode cur = dummy;     // hold the head
-    while(one !=null && two !=null){
-      if(one.value <= two.value){
+    ListNode cur = dummy;
+    while (one != null && two != null) {
+      if (one.value <= two.value) {
         cur.next = one;
         one = one.next;
       } else {
@@ -59,12 +60,17 @@ public class Solution {
       }
       cur = cur.next;
     }
-    // If there are one of the ListNodes left
-    if(one != null){
+    
+    if (one != null) {
       cur.next = one;
     } else {
-      cur.next =two;
+      cur.next = two;
     }
+    
     return dummy.next;
   }
 }
+
+
+
+
