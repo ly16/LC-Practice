@@ -13,6 +13,9 @@ one: 1  2
 two: 3  4
 reverse two: 4  3
 merge: 1 4 2 3
+
+time = O(n)
+space = O(n)
 */
 
 /**
@@ -28,54 +31,53 @@ merge: 1 4 2 3
 public class Solution {
   public ListNode reorder(ListNode head) {
     // Write your solution here.
-    if(head == null || head.next == null){
+    if (head == null || head.next == null) {
       return head;
     }
-    // 1. find the middle
-    ListNode mid = midNode(head);
-    ListNode one = head;                // first half
-    ListNode two = mid.next;             // second half
-    // 2. Seperate two halfs
+    ListNode mid = findMid(head);
+    ListNode one = head;
+    ListNode two = mid.next;
     mid.next = null;
-    // 3. reverse the second half and merge together
     return merge(one, reverse(two));
   }
-  // 1. find the middle
-  private ListNode midNode(ListNode head){      //corner case before
+  
+  private ListNode findMid(ListNode head) {
     ListNode slow = head;
     ListNode fast = head;
-    while(fast.next != null && fast.next.next != null){
+    while (fast.next != null && fast.next.next != null) {
       slow = slow.next;
       fast = fast.next.next;
     }
     return slow;
   }
-  // 3. reverse the second half and merge together
-  private ListNode reverse(ListNode head){
-    if(head == null || head.next == null){
+  
+  private ListNode reverse(ListNode head) {
+    if (head == null || head.next == null) {
       return head;
     }
+    ListNode cur = head;
     ListNode prev = null;
-    while(head != null){
-      ListNode next = head.next;
-      head.next = prev;
-      prev = head;
-      head = next;
+    while (cur != null) {
+      ListNode next = cur.next;
+      cur.next = prev;
+      prev = cur;
+      cur = next;
     }
     return prev;
   }
   
-  private ListNode merge(ListNode one, ListNode two){
+  private ListNode merge(ListNode one, ListNode two) {
     ListNode dummy = new ListNode(0);
     ListNode cur = dummy;
-    while(one != null && two != null){
+    while(one != null && two != null) {
       cur.next = one;
       one = one.next;
       cur.next.next = two;
       two = two.next;
       cur = cur.next.next;
-    }
-    if(one != null){
+    } 
+    
+    if (one != null) {
       cur.next = one;
     } else {
       cur.next = two;
@@ -83,6 +85,3 @@ public class Solution {
     return dummy.next;
   }
 }
-
-
-
