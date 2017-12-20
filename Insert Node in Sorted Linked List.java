@@ -1,39 +1,41 @@
 /*
-Insert a node in a sorted linked list.
-Given list = 1->4->6->8 and val = 5.
-Return 1->4->5->6->8.
+Insert a value in a sorted linked list.
+
+Examples
+
+L = null, insert 1, return 1 -> null
+L = 1 -> 3 -> 5 -> null, insert 2, return 1 -> 2 -> 3 -> 5 -> null
+L = 1 -> 3 -> 5 -> null, insert 3, return 1 -> 3 -> 3 -> 5 -> null
+L = 2 -> 3 -> null, insert 1, return 1 -> 2 -> 3 -> null
+
+time = O(n)
+space = O(1)
 */
 
 /**
- * Definition for ListNode
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) {
- *         val = x;
- *         next = null;
- *     }
+ * class ListNode {
+ *   public int value;
+ *   public ListNode next;
+ *   public ListNode(int value) {
+ *     this.value = value;
+ *     next = null;
+ *   }
  * }
  */
 public class Solution {
-    /**
-     * @param head: The head of linked list.
-     * @param val: an integer
-     * @return: The head of new linked list
-     */
-    public ListNode insertNode(ListNode head, int val) { 
-        // Write your code here
-        ListNode node= new ListNode(val);
-        ListNode dummy=new ListNode(0);
-        dummy.next=head;
-        head=dummy;
-        while(head.next!=null && head.next.val<=val)
-        {
-            head=head.next;
-        }
-        node.next=head.next;//insert node val
-        head.next=node;
-        
-        return dummy.next;// the head of new linked list
-    }  
+  public ListNode insert(ListNode head, int value) {
+    // write your solution here
+    ListNode newNode = new ListNode(value);
+    if (head == null || head.value >= value){
+      newNode.next = head;
+      return newNode;
+    }
+    ListNode cur = head;
+    while (cur.next != null && cur.next.value < value){
+      cur = cur.next;
+    }
+    newNode.next = cur.next;
+    cur.next = newNode;
+    return head;
+  }
 }
