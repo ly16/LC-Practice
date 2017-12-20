@@ -9,49 +9,44 @@ min() - return the current min value in the stack.
 
 When you pop from stack, you should consider the minStack
 You store for the min value, indcluding the same small ones, so the number of min elements should be the same
+
+time = O(1)
+space = O(n)
 */
 
-
-
 public class Solution {
-  private Deque<Integer> stack; //interface
-    private Deque<Integer> minStack;
-  
+  private Deque<Integer> stack;
+  private Deque<Integer> minStack;
   public Solution() {
     // write your solution here
-    stack = new LinkedList<Integer>();  //implement
+    stack = new LinkedList<Integer>();
     minStack = new LinkedList<Integer>();
   }
   
-  public int min(){
-    if(minStack.isEmpty()){
-      return -1;
-    }
-    return minStack.peekFirst();
-  }
-  
-  public void push(int element){
-    stack.offerFirst(element);      // push the smaller one in the minStack
-    if(minStack.isEmpty() || element <= minStack.peekFirst()){
-      minStack.offerFirst(element);
-    }
-  }
-  
   public int pop() {
-    if(stack.isEmpty()){
+    if (stack.isEmpty()) {
       return -1;
     }
     Integer result = stack.pollFirst();
-    if (minStack.peekFirst().equals(result)){
-      minStack.pollFirst(); //since we push "<=" to the minStack
+    if (result.equals(minStack.peekFirst())) {
+      minStack.pollFirst();
     }
     return result;
   }
   
-  public int top(){
-    if (stack.isEmpty()){
-      return -1;
+  public void push(int element) {
+    stack.offerFirst(element);
+    if (minStack.isEmpty() || minStack.peekFirst() >= element) {
+      minStack.offerFirst(element);
     }
-    return stack.peekFirst();
+  }
+  
+  public int top() {
+    return stack.isEmpty() ? -1 : stack.peekFirst();
+  }
+  
+  public int min() {
+    return stack.isEmpty() ? -1 : minStack.peekFirst();
   }
 }
+
