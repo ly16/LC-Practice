@@ -28,6 +28,9 @@ null           3 8               5
 4              1                 5 8 11 3 4
 1              null              5 8 11 3 4 1
 reverse：1 4 3 11 8 5
+
+time = O(n)
+space = O(n)
 */
 
 
@@ -45,26 +48,25 @@ reverse：1 4 3 11 8 5
 public class Solution {
   public List<Integer> postOrder(TreeNode root) {
     // Write your solution here.
-   List<Integer> list = new ArrayList<>();
-   if (root == null){
-     return list;
-   }
-   // reverse root, right, left -> left, right, root
-   Deque<TreeNode> stack = new LinkedList<TreeNode>();  //LinkedList 
-   stack.offerFirst(root);
-   while(!stack.isEmpty()){             // stack.isEmpty() 
-     TreeNode cur = stack.pollFirst();
-     list.add(cur.key);               // cur.key
-     // left in the stack first
-     if (cur.left != null){
-       stack.offerFirst(cur.left);
-     }
-     if (cur.right !=null){
-       stack.offerFirst(cur.right);
-     }
-   }
-   // reverse to left, right, root postOrder
-   Collections.reverse(list);      //collections, not collection
-   return list;
+    List<Integer> result = new ArrayList<Integer>();
+    if (root == null) {
+      return result;
+    }
+    Deque<TreeNode> stack = new LinkedList<TreeNode>();
+    stack.offerFirst(root);
+    
+    while (!stack.isEmpty()) {
+      TreeNode cur = stack.pollFirst();
+      if (cur.left != null) {
+        stack.offerFirst(cur.left);
+      }
+      if (cur.right != null) {
+        stack.offerFirst(cur.right);
+      }
+      result.add(cur.key);
+    }
+    Collections.reverse(result);
+    return result;
   }
 }
+
