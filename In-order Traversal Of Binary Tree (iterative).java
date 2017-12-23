@@ -31,6 +31,7 @@ cur             stack   inOrder
 5.right=null    null
 
 time = O(n), n is # of node
+space = O(n)
 */
 
 
@@ -48,26 +49,25 @@ time = O(n), n is # of node
 public class Solution {
   public List<Integer> inOrder(TreeNode root) {
     // Write your solution here.
-    List<Integer> inOrder = new ArrayList<>();
-    if (root == null){
-      return inOrder;
+    List<Integer> result = new ArrayList<Integer>();
+    if (root == null) {
+      return result;
     }
-    Deque<TreeNode> stack = new LinkedList<>();
     TreeNode cur = root;
-
-    while (cur != null || !stack.isEmpty()){
-      // offer node and check left, so left is above root
-      if (cur != null){
+    Deque<TreeNode> stack = new LinkedList<TreeNode>();
+    
+    while (cur != null || !stack.isEmpty()) {
+      if (cur != null) {
         stack.offerFirst(cur);
-        // check left
         cur = cur.left;
-      } else {  // poll node and check right, so right is above the previous left
+      } else {
         cur = stack.pollFirst();
-        inOrder.add(cur.key); //cur is TreeNode, so need key
-        // check right
+        result.add(cur.key);
         cur = cur.right;
       }
     }
-    return inOrder;
+    
+    return result;
   }
 }
+
