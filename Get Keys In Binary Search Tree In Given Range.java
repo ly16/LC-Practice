@@ -27,7 +27,8 @@ steps:
 2<=5<=5, add 5 to list,(5,2,5,3 4 5)
 5.right=8, 8 cannot enter any conditions. So final list is 3 4 5
 
-
+time = O(n)
+space = O(height) = O(n)
 */
 
 
@@ -44,25 +45,28 @@ steps:
 public class Solution {
   public List<Integer> getRange(TreeNode root, int min, int max) {
     // Write your solution here.
-    List<Integer> list = new ArrayList<>();
-    getRange(root, min, max, list);
-    return list;
+    List<Integer> result = new ArrayList<Integer>();
+    helper(root, min, max, result);
+    return result;
   }
   
-  // node > min-> left, node < max->right
-  private void getRange(TreeNode root, int min, int max, List<Integer> list){ //void
-    if (root == null){
-      return;
+  public List<Integer> helper(TreeNode root, int min, int max, List<Integer> result) {
+    if (root == null) {
+      return result;
     }
-    if (root.key > min){
-      getRange(root.left, min, max, list);
+    
+    if (root.key > min) {
+     helper(root.left, min, max, result);
     }
-    // check to make sure in the range
-    if (root.key >= min && root.key <= max){  //root.key
-      list.add(root.key);
+    
+    if (root.key >= min && root.key <= max) {
+      result.add(root.key);
     }
-    if (root.key < max){
-      getRange(root.right, min, max, list);
+    
+    if (root.key < max) {
+      helper(root.right, min, max, result);
     }
+    
+    return result;
   }
 }
