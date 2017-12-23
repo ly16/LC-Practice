@@ -24,6 +24,7 @@ stack preOrder
 3   -> 1 2 4 5 3
 
 time = O(n), n is # of node
+space = O(n)
 */
 
 
@@ -37,28 +38,36 @@ time = O(n), n is # of node
  *   }
  * }
  */
+/**
+ * public class TreeNode {
+ *   public int key;
+ *   public TreeNode left;
+ *   public TreeNode right;
+ *   public TreeNode(int key) {
+ *     this.key = key;
+ *   }
+ * }
+ */
 public class Solution {
   public List<Integer> preOrder(TreeNode root) {
     // Write your solution here.
-    // Container of ArrayList
-    List<Integer> preOrder = new ArrayList<>();
-    if (root == null){
-      return preOrder;
+    List<Integer> result = new ArrayList<Integer>();
+    if (root == null) {
+      return result;
     }
-    // use stack to iterate the tree
-    Deque<TreeNode> stack = new LinkedList<>(); // This is TreeNode
+    Deque<TreeNode> stack = new LinkedList<TreeNode>();
     stack.offerFirst(root);
-    while (!stack.isEmpty()){
+    
+    while(!stack.isEmpty()) {
       TreeNode cur = stack.pollFirst();
-      // root, left, right-> root, right, left in stack
-      if (cur.right != null){  // cur is a TreeNode
+      if (cur.right != null) {
         stack.offerFirst(cur.right);
       }
-      if(cur.left != null){
+      if (cur.left != null) {
         stack.offerFirst(cur.left);
       }
-      preOrder.add(cur.key);  // cur is a TreeNode.key
+      result.add(cur.key);
     }
-    return preOrder;
+    return result;
   }
 }
