@@ -24,19 +24,16 @@ space = O(height) = O(n) unbalanced
 public class Solution {
   public boolean isBST(TreeNode root) {
     // Write your solution here.
-    return isBST(root, Integer.MIN_VALUE, Integer.MAX_VALUE); //Integer.MIN_VALUE
+    return BSThelper(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
   }
-  // left smaller, change max; right bigger, change min
-  private boolean isBST(TreeNode root, int min, int max){ //int min, int max
-    if (root == null){
+  public boolean BSThelper(TreeNode root, int min, int max) {
+    if (root == null) {
       return true;
     }
-    // TreeNode node.key
-    if (root.key < min || root.key > max){
+    if (root.key < min || root.key > max) {
       return false;
     }
-     // no duplicate keys, so need + /- 1
-    return isBST(root.left, min, root.key - 1) && isBST(root.right, root.key + 1, max);
+    return BSThelper(root.left, min, root.key - 1) && BSThelper(root.right, root.key + 1, max);
   }
 }
 
