@@ -40,21 +40,20 @@ space = O(height) = O(n) unbalanced = O(logn) balanced
 public class Solution {
   public boolean isSymmetric(TreeNode root) {
     // Write your solution here.
-    if (root == null){
+    if (root == null) {
       return true;
     }
-    return isSymmetric(root.left, root.right);
+    return symHelper(root.left, root.right);
   }
   
-  private boolean isSymmetric(TreeNode left, TreeNode right){
-    // 1. all null 2. one null 3. key is not equal
-    if (left == null && right == null){
+  public boolean symHelper(TreeNode one, TreeNode two) {
+    if (one == null && two == null) {
       return true;
-    } else if (left == null || right == null){
+    } else if (one == null || two == null) {
       return false;
-    } else if (left.key != right.key){
+    } else if (one.key != two.key) {
       return false;
     }
-    return isSymmetric(left.left, right.right) && isSymmetric(left.right, right.left);
+    return symHelper(one.left, two.right) && symHelper(one.right, two.left);
   }
 }
