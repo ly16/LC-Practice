@@ -15,9 +15,8 @@ Example:
 is balanced binary tree
 What if the binary tree is null? Return true in this case.
 time = O(nlogn), each level O(n), logn levels
+space = O(log(n))
 */
-
-
 
 
 /**
@@ -33,31 +32,29 @@ time = O(nlogn), each level O(n), logn levels
 public class Solution {
   public boolean isBalanced(TreeNode root) {
     // Write your solution here.
-    if (root == null){
+    if (root == null) {
       return true;
     }
-    // if unbalanced return false, balanced return the height
-    return helper(root) != -1;
+    return getHeight(root) != -1;
   }
   
-  private int helper(TreeNode root){
-    if (root == null){
+  public int getHeight(TreeNode root) {
+    if (root == null) {
       return 0;
     }
-    // check left subtree
-    int leftHeight = helper(root.left);
-    if(leftHeight == -1){
-      return -1;
-    }
-    // check right subtree
-    int rightHeight = helper(root.right);
-    if(rightHeight == -1){
+    int left = getHeight(root.left);
+    if (left == -1) {
       return -1;
     }
     
-    if(Math.abs(leftHeight - rightHeight) > 1){
+    int right = getHeight(root.right);
+    if (right == -1) {
       return -1;
     }
-    return Math.max(leftHeight, rightHeight) + 1;
+    
+    if (Math.abs(left - right) > 1) {
+      return -1;
+    }
+    return Math.max(right, left) + 1;
   }
 }
