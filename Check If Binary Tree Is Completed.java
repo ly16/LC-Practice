@@ -29,8 +29,10 @@ Queue         cur           flag
 4 5            3             true
 3.left flag = true
 return false
-*/
 
+time = O(n)
+space = O(n)    // extra queue
+*/
 
 
 
@@ -47,17 +49,16 @@ return false
 public class Solution {
   public boolean isCompleted(TreeNode root) {
     // Write your solution here.
-    if (root == null){
+    if (root == null) {
       return true;
     }
-    Queue<TreeNode> queue = new LinkedList<>();
-    boolean flag = false;
+    Queue<TreeNode> queue = new LinkedList<TreeNode>();
     queue.offer(root);
+    boolean flag = false;
     
-    while(!queue.isEmpty()){  // isEmpty()
+    while (!queue.isEmpty()) {
       TreeNode cur = queue.poll();
-      // if any child is not present 
-      if (cur.left == null){
+      if (cur.left == null) {
         flag = true;
       } else if (flag) {
         return false;
@@ -65,10 +66,9 @@ public class Solution {
         queue.offer(cur.left);
       }
       
-      //check right
       if (cur.right == null) {
         flag = true;
-      } else if (flag) {  // if flag does not have left child
+      } else if(flag) {
         return false;
       } else {
         queue.offer(cur.right);
@@ -77,5 +77,4 @@ public class Solution {
     return true;
   }
 }
-
 
