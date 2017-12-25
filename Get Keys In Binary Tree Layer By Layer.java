@@ -27,7 +27,8 @@ queue           cur          curLayer          list
 6                 6             4 5 6           1 2 3 4 5 6 
 
 
-
+time = O(n)
+space = O(n)    // for the extra queue
 */
 
 
@@ -44,30 +45,31 @@ queue           cur          curLayer          list
 public class Solution {
   public List<List<Integer>> layerByLayer(TreeNode root) {
     // Write your solution here.
-    List<List<Integer>> list = new ArrayList<List<Integer>>();
-    if(root == null){
-      return list;
+    List<List<Integer>> result = new ArrayList<List<Integer>>();
+    if (root == null) {
+      return result;
     }
-    Queue<TreeNode> queue = new LinkedList<>(); //TreeNode
+    Queue<TreeNode> queue = new LinkedList<TreeNode>();
     queue.offer(root);
-    
-    while(!queue.isEmpty()){
-      List<Integer> curLayer = new ArrayList<>();
-      int size = queue.size();  //size()
+
+    while (!queue.isEmpty()) {
+      List<Integer> curLayer = new ArrayList<Integer>();
+      int size = queue.size();
       
-      for(int i = 0; i < size; i++){
+      for (int i = 0; i < size; i++) {
         TreeNode cur = queue.poll();
-        curLayer.add(cur.key);  //treenode node.key
-        if(cur.left != null){
+        if (cur.left != null) {
           queue.offer(cur.left);
         }
-        if(cur.right != null){
+        if (cur.right != null){
           queue.offer(cur.right);
         }
+        curLayer.add(cur.key);
       }
       
-      list.add(curLayer);
+      result.add(curLayer);
     }
-    return list;
+    
+    return result;
   }
 }
