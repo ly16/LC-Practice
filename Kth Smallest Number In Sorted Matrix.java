@@ -39,7 +39,7 @@ public class Solution {
     return minHeap.peek().value;
   }
   
-  static class Cell{
+  public static class Cell{
     int row;
     int col;
     int value;
