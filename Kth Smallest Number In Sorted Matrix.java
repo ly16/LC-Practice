@@ -44,7 +44,7 @@ public class Solution {
     int col;
     int value;
     
-    Cell(int row, int col, int value) {
+    public Cell(int row, int col, int value) {
       this.row = row;
       this.col = col;
       this.value = value;
