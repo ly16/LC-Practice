@@ -1,10 +1,10 @@
 /*
-
 Given a matrix of size N x M. For each row the elements are sorted in ascending order, 
 and for each column the elements are also sorted in ascending order. Find the Kth smallest number in it.
 time = O(klogk) kth smallest
 space = O(k)  //extra minheap
 */
+
 
 public class Solution {
   public int kthSmallest(int[][] matrix, int k) {
