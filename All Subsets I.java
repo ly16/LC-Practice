@@ -14,33 +14,26 @@ time = O(2^n), n is the number of element
 space = O(height) = O(n)
 */
 
-
 public class Solution {
   public List<String> subSets(String set) {
     // Write your solution here.
-    List<String> result = new ArrayList<>();
-    if (set == null){
+    List<String> result = new ArrayList<String>();
+    if (set == null) {
       return result;
     }
-    
-    // transfer set to char array, including index
-    char[] arraySet = set.toCharArray();
+    char[] setArray = set.toCharArray();
     StringBuilder sb = new StringBuilder();
-    helper(arraySet, sb, 0, result);
+    helper(result, setArray, 0, sb);
     return result;
   }
-  
-  private void helper(char[] set, StringBuilder sb, int index, List<String> result){
-    if (index == set.length) {
+  public void helper(List<String> result, char[] setArray, int index, StringBuilder sb) {
+    if (index == setArray.length) {
       result.add(sb.toString());
       return;
     }
-    
-    // Not pick the char at index
-    helper(set, sb, index + 1, result); // breaking point
-    // pick the char at index
-    helper(set, sb.append(set[index]), index + 1, result);
-    // remove the char at previous level
+    helper(result, setArray, index + 1, sb);
+    helper(result, setArray, index + 1, sb.append(setArray[index]));
     sb.deleteCharAt(sb.length() - 1);
   }
 }
+
