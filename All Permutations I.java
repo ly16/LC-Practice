@@ -20,35 +20,30 @@ index = 2    c   b    c   a     b   a
 public class Solution {
   public List<String> permutations(String set) {
     // Write your solution here.
-   List<String> result = new ArrayList<>();
-   if (set == null){
-     return result;
-   }
-   
-   // change set to charArray
-   char[] array = set.toCharArray();
-   helper(array, 0, result);
-   return result;
+    List<String> result = new ArrayList<String>();
+    if (set == null) {
+      return result;
+    }
+    char[] setArray = set.toCharArray();
+    helper(result, setArray, 0);
+    return result;
   }
-  
-  private void helper(char[] array, int index, List<String> result){
-  // stop permulation
-    if (index == array.length) {
-      result.add(new String(array));
+  public void helper(List<String> result, char[] setArray, int index) {
+    if (index == setArray.length) {
+      result.add(new String(setArray));
       return;
     }
-    
-    for(int i = index; i < array.length; i++) {
-      swap(array, index, i);
-      helper(array, index + 1, result);     //check whether terminate
-      // swap back from previous level
-      swap(array, index, i);
+    for (int i = index; i < setArray.length; i++) {
+      swap(setArray, index, i);
+      helper(result, setArray, index + 1);
+      swap(setArray, index, i);
     }
   }
-  
- private void swap(char[] array, int left, int right) {
-    char temp = array[left];    // type is char
-    array[left] = array[right];
-    array[right] = temp;
+  public void swap(char[] setArray, int left, int right) {
+    char temp = setArray[left];
+    setArray[left] = setArray[right];
+    setArray[right] = temp;
   }
 }
+
+ 
