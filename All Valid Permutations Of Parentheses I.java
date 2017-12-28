@@ -7,39 +7,33 @@ N = 3, all valid permutations are ["((()))", "(()())", "(())()", "()(())", "()()
 N = 0, all valid permutations are [""]
 
 n is the number of pair
-time = O(n)
-space = O(2 ^ (2n)) without ignoring that half 
+time = O(2^(2n))
+space = O(2n) without ignoring that half 
 
 
 */
-
 
 public class Solution {
   public List<String> validParentheses(int n) {
     // Write your solution here.
     List<String> result = new ArrayList<String>();
-    char[] cur = new char[n * 2]; // n is the number of pair
-    helper(cur, n, n, 0, result);
+    char[] cur = new char[2 * n];
+    helper(result, cur, 0, n, n);
     return result;
   }
-  
-  // left '(', right ')', index position to fill in
-  private void helper(char[] cur, int left, int right, int index, List<String> result) {
-    // terminate
+  public void helper(List<String> result, char[] cur, int index, int left, int right) {
     if (left == 0 && right == 0) {
-       result.add(new String(cur)); // String
+      result.add(new String(cur));
       return;
     }
     
-    // we do not need remove, because we set the character at index 
-    if(left > 0){
+    if (left > 0) {
       cur[index] = '(';
-      helper(cur, left - 1, right, index + 1, result);
+      helper(result, cur, index + 1, left - 1, right);
     }
-    
-    if(left < right) {
+    if (right > left) {
       cur[index] = ')';
-      helper(cur, left, right - 1, index + 1, result);
+      helper(result, cur, index + 1, left, right - 1);
     }
   }
 }
