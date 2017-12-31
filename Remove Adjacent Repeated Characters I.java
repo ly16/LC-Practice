@@ -8,16 +8,18 @@ time = O(n), space = O(1)
 public class Solution {
   public String deDup(String input) {
     // Write your solution here.
-    if (input == null) {
-      return null;
+    // input is not empty
+    if (input == null || input.length() <= 1) {
+      return input;
     }
+    int slow = 0;
     char[] array = input.toCharArray();
-    int s = 0;
-    for (int f = 0; f < array.length; f++) {
-      if (f == 0 || array[f] != array[s - 1]) { // not including slow is the answer
-        array[s++] = array[f];  // array[slow] = array[fast],slow++
+    for (int fast = 1; fast < array.length; fast++) {
+      if (array[fast] == array[slow]) {
+        continue;
       }
+      array[++slow] = array[fast];
     }
-    return new String(array, 0, s);  //(array, start, the length)
+    return new String(array, 0, slow + 1);
   } 
 }
