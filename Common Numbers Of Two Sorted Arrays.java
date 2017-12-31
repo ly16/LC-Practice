@@ -12,21 +12,22 @@ time = O(n+m), space = O(1)
 */
 
 public class Solution {
-  public List<Integer> common(List<Integer>  A, List<Integer> B) {
-    // Write your solution here.List<Integer> 
-     List<Integer> common = new ArrayList<Integer>();
-	   int i = 0, j = 0;
-	   while (i < A.size() && j < B.size()) { //size(), length for int[]
-	      if (A.get(i) == B.get(j)) { //.get() for List, A[i] for int[]
-	        common.add(A.get(i));
-	        i++;
-	        j++;
-	      } else if (A.get(i) < B.get(j)) {
-	        i++;
-	      } else {
-	        j++;
-	      }
-	   }
+  public List<Integer> common(List<Integer> A, List<Integer> B) {
+    // Write your solution here.
+    List<Integer> common = new ArrayList<Integer>();
+    int i = 0;
+    int j = 0;
+    while (i < A.size() && j < B.size()) {
+      if (A.get(i) == B.get(j)) {
+        common.add(A.get(i));
+        i++;
+        j++;
+      } else if (A.get(i) < B.get(j)) {
+        i++;
+      } else {
+        j++;
+      }
+    }
     return common;
   }
 }
