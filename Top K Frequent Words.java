@@ -17,7 +17,8 @@ Composition = ["a", "a", "b", "b", "b", "b", "c", "c", "c", "d"], top 5 frequent
 time:
 insert O((n-k)log(k))
 heapify O(k)
-time = O(k + (n-k)log(k))
+poll O(kloh(k))
+time = O(k + (n-k)log(k) + klog(k)) = O(k + nlog(k))
 
 space:
 hashMap: O(n)
