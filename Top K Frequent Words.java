@@ -25,22 +25,23 @@ MinHeap: O(k)
 space = O(n+k) = O(n)
 */
 
+
 public class Solution {
   public String[] topKFrequent(String[] combo, int k) {
     // Write your solution here.
     if (combo.length == 0) {
       return new String[0];
     }
-    Map<String, Integer> freqMap = getFreqMap(combo);
-    // compare frequency in min heap
-    PriorityQueue<Map.Entry<String, Integer>> minHeap = new PriorityQueue<>(k,
-    new Comparator<Map.Entry<String, Integer>>() {
+    Map<String, Integer> freqMap = getMap(combo);
+    PriorityQueue<Map.Entry<String, Integer>> minHeap = new PriorityQueue<>(k, new Comparator<Map.Entry<String, Integer>>() {
       @Override
-      public int compare(Map.Entry<String, Integer> e1, Map.Entry<String, Integer> e2) {
-        return e1.getValue().compareTo(e2.getValue());
+      public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+        if (o1.getValue() == o2.getValue()) {
+          return 0;
+        } 
+        return o1.getValue() < o2.getValue() ? -1 : 1;
       }
     });
-    // keep the kth largest in freqmap
     for (Map.Entry<String, Integer> entry : freqMap.entrySet()) {
       if (minHeap.size() < k) {
         minHeap.offer(entry);
@@ -49,28 +50,25 @@ public class Solution {
         minHeap.offer(entry);
       }
     }
-    
     return freqArray(minHeap);
   }
-  
-  private Map<String, Integer> getFreqMap(String[] combo) {
+  private Map<String, Integer> getMap(String[] combo) {
     Map<String, Integer> freqMap = new HashMap<>();
     for (String s : combo) {
       Integer freq = freqMap.get(s);
-      if (freq == null) {
-        freqMap.put(s, 1);
+      if (freq != null) {
+        freqMap.put(s, freq + 1);
       } else {
-        freqMap.put(s, freq + 1); 
+        freqMap.put(s, 1);
       }
     }
     return freqMap;
   }
-  
   private String[] freqArray(PriorityQueue<Map.Entry<String, Integer>> minHeap) {
-    String[] result = new String[minHeap.size()];
+    String[] array = new String[minHeap.size()];
     for (int i = minHeap.size() - 1; i >= 0; i--) {
-      result[i] = minHeap.poll().getKey();  // poll the somallest one by one
+      array[i] = minHeap.poll().getKey();
     }
-    return result;
+    return array;
   }
 }
