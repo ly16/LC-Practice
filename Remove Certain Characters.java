@@ -4,14 +4,15 @@ eg:
 input = "asjhdjiudh" target = "jiu"
 output = "asjhddh"
 
-time = O(n), space = O(m), m is the size of target
+time = O(n + m), space = O(m), m is the size of target
 */
 
 public class Solution {
   public String remove(String input, String t) {
     // Write your solution here.
+    // input and t are not null
     char[] array = input.toCharArray();
-    Set<Character> set = buildSet(t); //build string to set
+    Set<Character> set = buildSet(t);
     int slow = 0;
     for (int fast = 0; fast < array.length; fast++) {
       if (!set.contains(array[fast])) {
@@ -22,8 +23,8 @@ public class Solution {
   }
   
   private Set<Character> buildSet(String t) {
-    Set<Character> set = new HashSet<Character>();
-    for (int i = 0; i < t.length(); i++) {    // string.length()
+    Set<Character> set = new HashSet<>();
+    for (int i = 0; i < t.length(); i++) {
       set.add(t.charAt(i));
     }
     return set;
