@@ -45,7 +45,7 @@ result:
 array[0] = array[0], array[1] = array[6], return "ad"
 
 time = O(n)
-space = O(1), no extra stack
+space = O(1), no extra stack, inplace
 */
 
 public class Solution {
@@ -54,25 +54,19 @@ public class Solution {
     if (input == null || input.length() <= 1) {
       return input;
     }
-    
-    // convert to charArray
     char[] array = input.toCharArray();
-    
-    int end = 0;
-    for (int i = 1; i < array.length; i++)  {
-       if (end == -1 || array[i] != array[end]) {
-         // ++end/ end++ are different here
-         // end++: array[0] = array[i]
-         // ++end: array[1] = array[i], array[0] still there
-         array[++end] = array[i];
-       } else {
-         end--;
-         while (i + 1 < array.length && array[i] == array[i + 1]) {
-           i++;
-         }
-       }
+    int slow = 0;
+    for (int fast = 1; fast < array.length; fast++) {
+      if (slow == -1 || array[fast] != array[slow]) {
+        array[++slow] = array[fast];
+      } else {
+        slow--;
+        while (fast + 1 < array.length && array[fast] == array[fast + 1]) {
+          fast++;
+        }
+      }
     }
-    return new String(array, 0 ,end + 1);
+    return new String(array, 0, slow + 1);
   }
 }
 
