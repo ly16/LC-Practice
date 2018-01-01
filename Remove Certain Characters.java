@@ -5,7 +5,7 @@ input = "asjhdjiudh" target = "jiu"
 output = "asjhddh"
 
 time = O(n + m), 
-space = O(n + m)    addtional set and to char array
+space = O(m)    addtional set
 */
 
 public class Solution {
