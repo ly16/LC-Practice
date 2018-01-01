@@ -2,7 +2,7 @@
 Remove adjacent, repeated characters in a given string, 
 leaving only one character for each group of such characters.
 time = O(n), 
-space = O(n)      to char array
+space = O(1)     
 
 */
 
