@@ -8,7 +8,7 @@ Examples:
 "abc    d    w" -> "abc d w"
 
 time = O(n), 
-space = O(n)    to char array
+space = O(1)
 */
 
 public class Solution {
