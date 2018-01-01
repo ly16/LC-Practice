@@ -4,7 +4,8 @@ eg:
 input = "asjhdjiudh" target = "jiu"
 output = "asjhddh"
 
-time = O(n + m), space = O(m), m is the size of target
+time = O(n + m), 
+space = O(n + m)    addtional set and to char array
 */
 
 public class Solution {
