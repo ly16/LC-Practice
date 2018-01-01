@@ -45,7 +45,7 @@ result:
 array[0] = array[0], array[1] = array[6], return "ad"
 
 time = O(n)
-space = O(1), no extra stack, inplace
+space = O(n), to char array
 */
 
 public class Solution {
