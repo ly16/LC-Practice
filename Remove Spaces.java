@@ -7,7 +7,8 @@ The given string is not null.
 Examples:
 "abc    d    w" -> "abc d w"
 
-time = O(n), space = O(1)
+time = O(n), 
+space = O(n)    to char array
 */
 
 public class Solution {
