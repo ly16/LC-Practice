@@ -155,3 +155,20 @@ public class Solution {
     return match;
   }
 }
+
+////////////////////////////////// String.indexOf() //////////////////////////////////
+public class Solution {
+  public String replace(String input, String s, String t) {
+    // Write your solution here.
+    StringBuilder sb = new StringBuilder();
+    int start = 0;
+    int match = input.indexOf(s, start);
+    while (match != -1) {
+      sb.append(input, start, match).append(t);
+      start = match + s.length();
+      match = input.indexOf(s, start);
+    }
+    sb.append(input, start, input.length());
+    return sb.toString();
+  }
+}
