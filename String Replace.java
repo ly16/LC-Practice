@@ -156,7 +156,7 @@ public class Solution {
   }
 }
 
-////////////////////////////////// String.indexOf() //////////////////////////////////
+////////////////////////////////// Method II: String.indexOf() //////////////////////////////////
 public class Solution {
   public String replace(String input, String s, String t) {
     // Write your solution here.
