@@ -61,41 +61,38 @@ a p p l e   a n
       l r
 
 return "apple an"
+
+time = O(n)
+space = O(1)
 */
 
 public class Solution {
-  public static String reverseWords(String input) {
-      // Write your solution here.
-      if (input == null || input.length() <= 1) {
-          return input;
+  public String reverseWords(String input) {
+    // Write your solution here.
+    if (input == null || input.length() <= 1) {
+      return input;
+    }
+    char[] array = input.toCharArray();
+    int left = 0;
+    for (int i = 0; i < array.length; i++) {
+      if (array[i] != ' ' && (i == 0 || array[i - 1] == ' ')) {
+        left = i;
       }
-
-      char[] array = input.toCharArray();
-
-      int start = 0;
-      // reverse every words
-      for (int i = 0; i < array.length; i++) {
-          if (array[i] != ' ' && (i == 0 || array[i - 1] == ' ')) {
-              start = i;
-          }
-          if (array[i] != ' ' && (i == array.length - 1 || array[i + 1] == ' ')) {
-              reverse(array, start, i);
-          }
+      if (array[i] != ' ' && (i == array.length - 1 || array[i + 1] == ' ')) {
+        int right = i;
+        reverse(array, left, right);
       }
-
-      // reverse the whole array
-      reverse(array, 0, array.length - 1);
-
-      return new String(array);
+    }
+    reverse(array, 0, array.length - 1);
+    return new String(array);
   }
-
-  private static void reverse(char[] array, int left, int right) {
-      while (left < right) {
-          char temp = array[left];
-          array[left] = array[right];
-          array[right] = temp;
-          left++;
-          right--;
-      }
+  private void reverse(char[] array, int left, int right) {
+    while (left < right) {
+      char temp = array[left];
+      array[left] = array[right];
+      array[right] = temp;
+      left++;
+      right--;
+    }
   }
 }
