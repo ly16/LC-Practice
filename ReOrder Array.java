@@ -29,12 +29,14 @@ space = O(n) = O(2^logn)= 1+2+4+..+n
 public class Solution {
   public int[] reorder(int[] array) {
     // Write your solution here.
+    if (array.length <= 1) {
+      return array;
+    }
     if (array.length % 2 == 0) {
       reorder(array, 0, array.length - 1);
     } else {
       reorder(array, 0, array.length - 2);
     }
-    
     return array;
   }
   
@@ -43,18 +45,17 @@ public class Solution {
     if (length <= 2) {
       return;
     }
-    
     int mid = left + length / 2;
-    int lmid = left + length / 4;
-    int rmid = left + length * 3 / 4;
-    reverse(array, lmid, mid - 1);
-    reverse(array, mid, rmid - 1);
-    reverse(array, lmid, rmid - 1);
-    reorder(array, left, left + (lmid - left) * 2 - 1);//chunk1+3
-    reorder(array, left + (lmid - left) * 2, right);//chunk2+4
+    int lm = left + length / 4;
+    int rm = left + 3 * length / 4;
+    reverse(array, lm, mid - 1);
+    reverse(array, mid, rm - 1);
+    reverse(array, lm, rm - 1);
+    reorder(array, left, 2 * (lm - left) + left - 1);
+    reorder(array, 2 * (lm - left) + left, right);
   }
   
-  private void reverse(int[] array, int left, int right) {
+  private void reverse (int[] array, int left, int right) {
     while (left < right) {
       int temp = array[left];
       array[left] = array[right];
@@ -64,3 +65,4 @@ public class Solution {
     }
   }
 }
+
