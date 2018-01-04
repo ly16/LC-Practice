@@ -83,87 +83,75 @@ return "bananadogbananam"
 
 
 public class Solution {
-    public static String replace(String input, String s, String t) {
-        // Write your solution here.
-        char[] array = input.toCharArray();
-        if (s.length() >= t.length()) {
-            return replaceShorter(array, s, t);
-        } else {
-            return replaceLonger(array, s, t);
-        }
+  public String replace(String input, String s, String t) {
+    // Write your solution here.
+    char[] array = input.toCharArray();
+    if (s.length() >= t.length()) {
+      return replaceShort(array, s, t);
     }
-
-    public static String replaceShorter(char[] input, String s, String t) {
-        // fast and slow start from left to right
-        int slow = 0;
-        int fast = 0;
-        while (fast < input.length) {
-            // find the starting point, copy t at slow pointer
-            if (fast <= input.length - s.length() && equalSubstring(input, fast, s)) {
-                copySubstring(input, slow, t);
-                slow += t.length();
-                fast += s.length();
-            } else {
-                input[slow++] = input[fast++]; // input[slow] = input[fast]; slow++; fast++;
-            }
-        }
-        return new String(input, 0, slow); // array, offset, length
+    return replaceLong(array, s, t);
+  }
+  
+  public String replaceShort(char[] array, String s, String t) {
+    int slow = 0;
+    int fast = 0;
+    while (fast < array.length) {
+      if (fast <= array.length- s.length() && equalString(array, fast, s)) {
+        copyString(array, slow, t);
+        slow += t.length();
+        fast += s.length();
+      } else {
+        array[slow++] = array[fast++];
+      }
     }
-
-    public static String replaceLonger(char[] input, String s, String t) {
-        ArrayList<Integer> matches = getAllMatches(input, s);
-        // add new length needed
-        char[] result = new char[input.length + matches.size() * (t.length() - s.length())];
-        // fast and slow both from right to the left
-        int lastIndex = matches.size() - 1;
-        int slow = input.length - 1;
-        int fast = result.length - 1;
-        while (slow >= 0) {
-            if (lastIndex >= 0 && slow == matches.get(lastIndex)) {
-                copySubstring(result, fast - t.length() + 1 , t);
-                    fast -= t.length();
-                    slow -= s.length();
-                    lastIndex--;
-            } else {
-                    result[fast--] = input[slow--];
-                   }
-            }
-            return new String(result);
-        }
-
-
-    //check substring from fromIndex is same as s
-    private static boolean equalSubstring(char[] input, int fromIndex, String s) {
-        for (int i = 0; i < s.length(); i++) {
-            if (input[fromIndex + i] != s.charAt(i)) {
-                return false;
-            }
-        }
-        return true;
+    return new String(array, 0, slow);
+  }
+  
+  public String replaceLong(char[] array, String s, String t) {
+    List<Integer> match = getMatch(array, s);
+    char[] result = new char[array.length + match.size() * (t.length() - s.length())];
+    int lastmatch = match.size() - 1;
+    int slow = array.length - 1;
+    int fast = result.length - 1;
+    while (slow >= 0) {
+      if (lastmatch >= 0 && slow == match.get(lastmatch)) {
+        copyString(result, fast - t.length() + 1, t);
+        lastmatch--;
+        slow -= s.length();
+        fast -= t.length();
+      } else {
+        result[fast--] = array[slow--];
+      }
     }
-
-    //copy the string t to result at fromIndex
-    private static void copySubstring(char[] result, int fromIndex, String t) {
-        for (int i = 0; i < t.length(); i++) {
-            result[fromIndex + i] = t.charAt(i);
-        }
+    return new String(result);
+  }
+  
+  private boolean equalString(char[] array, int start, String s) {
+    for (int i = 0; i < s.length(); i++) {
+      if (array[start + i] != s.charAt(i)) {
+        return false;
+      }
     }
-
-    //get all the matches of s end positions
-    private static ArrayList<Integer> getAllMatches(char[] input, String s) {
-        ArrayList<Integer> matches = new ArrayList<>();
-        int i = 0;
-        while (i <= input.length - s.length()) { //<=, we want the last one
-            if (equalSubstring(input, i, s)) {
-                matches.add(i + s.length() - 1);
-                i += s.length();
-            } else {
-                i++;
-            }
-        }
-        return matches;
+    return true;
+  }
+  
+  private void copyString(char[] array, int start, String t) {
+    for (int i = 0; i < t.length(); i++) {
+      array[start + i] = t.charAt(i);
     }
-
+  }
+  
+  private List<Integer> getMatch(char[] array, String s) {
+    List<Integer> match = new ArrayList<Integer>();
+    int i = 0;
+    while (i <= array.length - s.length()) {
+      if (equalString(array, i, s)) {
+        match.add(i + s.length() - 1);
+        i += s.length();
+      } else {
+        i++;
+      }
+    }
+    return match;
+  }
 }
-
-
