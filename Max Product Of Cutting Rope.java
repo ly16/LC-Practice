@@ -9,7 +9,7 @@ n >= 2
 Examples
 n = 12, the max product is 3 * 3 * 3 * 3 = 81(cut the rope into 4 pieces with length of each is 3).
 
-time = O(n^n)
+time = O(n^2)
 space = O(n)    // to record local optimal
 */
 
