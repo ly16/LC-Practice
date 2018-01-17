@@ -54,8 +54,6 @@ public class Solution {
     merge(leftUp, rightUp, m, n);
     return leftUp;  
   }
-    
-  
   
   private int[][] getDown(int[][] matrix, int m, int n) {
     int[][] leftDown  = new int[m][n];
