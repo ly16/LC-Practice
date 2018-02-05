@@ -34,6 +34,6 @@ public class Solution {
             }
           }
         }
-  			return cost[0][helper.length - 1];
+  	return cost[0][helper.length - 1];
     }
 }
