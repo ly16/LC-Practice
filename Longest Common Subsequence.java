@@ -15,7 +15,7 @@ public class Solution {
   public int longest(String s, String t) {
     char[] sArray = s.toCharArray();
     char[] tArray = t.toCharArray();
-		int[][] common = new int[sArray.length + 1][tArray.length + 1];
+    int[][] common = new int[sArray.length + 1][tArray.length + 1];
     for (int i = 1; i < sArray.length + 1; i++) {
     	for (int j = 1; j < tArray.length + 1; j++) {
       	if (sArray[i - 1] == tArray[j - 1]) {
