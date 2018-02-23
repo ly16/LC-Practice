@@ -91,7 +91,6 @@ public class Solution {
       }
       pathCost++;
     }
-    
     for (int l = 0; l < gym.length; l++) {
     	for (int m = 0; m < gym[0].length; m++) {
       	if (!visited[l][m] && gym[l][m] == equip) {
