@@ -58,7 +58,7 @@ public class Solution {
     cur.set(0, a[cur.get(0)]);
     cur.set(1, b[cur.get(1)]);
     cur.set(2, c[cur.get(2)]);
-   	return cur;
+    return cur;
   }
   
   private long distance (List<Integer> point, int[] a, int[] b, int[] c) {
@@ -66,6 +66,6 @@ public class Solution {
     dist += a[point.get(0)] * a[point.get(0)];
     dist += b[point.get(1)] * b[point.get(1)];
     dist += c[point.get(2)] * c[point.get(2)];
-		return dist;
+    return dist;
   }
 }
