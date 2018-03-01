@@ -20,7 +20,7 @@ space = O(n)
 
 public class Solution {
   static class Node {
-  	Node prev;
+    Node prev;
     Node next;
     Character ch;
     Node(Character ch) {
