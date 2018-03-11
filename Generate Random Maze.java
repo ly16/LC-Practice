@@ -33,7 +33,7 @@ public class Solution {
   	north(1,0), south(-1, 0), west(0, 1), east(0, -1);
     int deltaX, deltaY;
     Dir(int deltaX, int deltaY) {
-    	this.deltaX = deltaX;
+      this.deltaX = deltaX;
       this.deltaY = deltaY;
     }
     public int moveX(int x, int times) {
@@ -61,10 +61,10 @@ public class Solution {
   }
   
   private void generate(int[][] maze, int x, int y) {
-  	Dir[] dirs = Dir.values();
+    Dir[] dirs = Dir.values();
     shuffle(dirs);
     for (Dir dir : dirs) {
-    	int nextX = dir.moveX(x, 2);
+      int nextX = dir.moveX(x, 2);
       int nextY = dir.moveY(y, 2);
       if (isValid(maze, nextX, nextY)) {
         maze[dir.moveX(x, 1)][dir.moveY(y, 1)] = 0;
