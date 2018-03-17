@@ -22,13 +22,11 @@ public class Solution {
     if (s.length() <= 0) {
     	return "";
     }
-    int left = 0;
-    int right = 0;
-    int length = 0;
+    
     int longest = 0;
     int start = 0;
     for (int i = 0; i < s.length(); i++) {
-      length = getLen(s, i, i);
+      int length = getLen(s, i, i);
       if (length > longest) {
       	longest = length;
         start = i - longest / 2;
