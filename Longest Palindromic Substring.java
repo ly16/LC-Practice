@@ -19,7 +19,7 @@ space = O(1)
 public class Solution {
   public String longestPalindrome(String s) {
     // Write your solution here
-    if (s.length() <= 0) {
+    if (s == null || s.length() <= 0) {
     	return "";
     }
     
