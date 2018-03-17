@@ -22,7 +22,7 @@ public class Solution {
   private Integer num;
   public Solution() {
     // Write your constructor code here if necessary.
-  	this.count = 0;
+    this.count = 0;
     this.num = null;
   }
   
