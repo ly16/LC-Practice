@@ -15,7 +15,7 @@ time = O(n^2)
 space = O(1)
 */
 
-
+/* Method 1 enumeration */
 public class Solution {
   public String longestPalindrome(String s) {
     // Write your solution here
