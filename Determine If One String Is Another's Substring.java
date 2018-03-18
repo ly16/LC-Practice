@@ -29,8 +29,9 @@ public class Solution {
       for (j = 0; j < small.length(); j++) {
         if (large.charAt(k) != small.charAt(j)) {
           break;
+        } else {
+          k++;
         }
-        k++;
       }
       if (j == small.length()) {
         return i;
