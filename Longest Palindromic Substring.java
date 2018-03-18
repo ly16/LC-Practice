@@ -54,3 +54,43 @@ public class Solution {
     return len;
   }
 }
+
+
+/* Method 2 dp */
+public class Solution {
+    public String longestPalindrome(String s) {
+        // write your code here
+        if (s == null || s.length() == 0) {
+            return "";
+        }
+        int n = s.length();
+        int start = 0;
+        int longest = 1;
+        boolean[][] det = new boolean[n][n];
+        // initialization
+        for (int i = 0; i < n; i++) {
+            det[i][i] = true;
+        }
+        
+        for (int i = 0; i < n - 1; i++) {
+            det[i][i + 1] = s.charAt(i) == s.charAt(i + 1);
+            if (det[i][i + 1]) {
+                start = i;
+                longest = 2;
+            }
+        }  
+        
+        for (int i = n - 1; i >= 0; i--) {
+            for (int j = i + 2; j < n; j++) {
+                if (s.charAt(i) == s.charAt(j) && det[i + 1][j - 1]) {
+                    det[i][j] = true;
+                    if (j - i + 1 > longest) {
+                        longest = j - i + 1;
+                        start = i;
+                    }
+                }
+            }
+        }
+        return s.substring(start, start + longest);
+    }
+}
