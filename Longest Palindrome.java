@@ -8,8 +8,8 @@ Example
 Given s = "abccccdd" return 7
 One longest palindrome that can be built is "dccaccd", whose length is 7.
 
-time = O(n)
-space = O(n)
+time = O(n) for the linear scan
+space = O(n)    for the set
 */
 
 public class Solution {
