@@ -19,12 +19,9 @@ public class Solution {
             return 1 % b;
         }
         
-        int product = fastPower(a, b, n / 2);
-        product = (int) ((long) product * product % b);
-        
-        if (n % 2 == 1) {
-            product = (int) ((long) product * a % b);
-        }
-        return product;
+        long product = fastPower(a, b, n / 2);
+        // we cannot do product^3 too large
+        product = product * product % b;
+        return n % 2 == 1 ? (int) (product * a % b) : (int) product;
     }
 }
