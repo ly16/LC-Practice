@@ -11,6 +11,7 @@ space = O(logn)
 
 public class Solution {
     public int fastPower(int a, int b, int n) {
+        // time = O(logn), space = O(logn)
          if (n == 1) {
             return a % b;
         }
@@ -18,11 +19,12 @@ public class Solution {
             return 1 % b;
         }
         
-        int product = fastPower(a, b, n / 2);
+        long product = fastPower(a, b, n / 2);
+        product = product * product % b;
         
         if (n % 2 == 1) {
-            return (int) (product * product * a * 1L) % b;
+            product = product * a % b;
         }
-        return (int) (product * product * 1L) % b;
+        return (int) product;
     }
 }
