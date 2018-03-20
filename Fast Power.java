@@ -19,12 +19,12 @@ public class Solution {
             return 1 % b;
         }
         
-        long product = fastPower(a, b, n / 2);
-        product = product * product % b;
+        int product = fastPower(a, b, n / 2);
+        product = (int) ((long) product * product % b);
         
         if (n % 2 == 1) {
-            product = product * a % b;
+            product = (int) ((long) product * a % b);
         }
-        return (int) product;
+        return product;
     }
 }
