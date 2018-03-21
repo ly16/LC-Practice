@@ -26,7 +26,7 @@ public class Solution {
         int right = A.length - 1;
         while (left + 1 < right) {
             int mid = left + (right - left) / 2;
-            // left is mid or the right side of mid
+            // peek is mid or the right side of mid
             if (A[mid] < A[mid + 1]) {
                 left = mid; 
             } else {
