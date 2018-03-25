@@ -10,6 +10,9 @@ find(4) // return true
 find(7) // return false
 
 time = O(n) n is the size of list
+for each element
+add time = O(1)
+find time = O(1)
 space = O(n) n is the size of list and map
 */
 
