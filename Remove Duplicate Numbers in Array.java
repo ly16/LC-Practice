@@ -16,29 +16,27 @@ Move duplicate integers to the tail of nums => nums = [1,3,4,2,?,?].
 Return the number of unique integers in nums => 4.
 Actually we don't care about what you place in ?, we only care about the part which has no duplicate integers.
 
+time = O(n)
+space = O(1) in place
 */
 
-
 public class Solution {
-    /**
-     * @param nums an array of integers
-     * @return the number of unique integers
-     */
     public int deduplication(int[] nums) {
-        // Write your code here
-        if(nums.length==0)
-        {
+        // write your code here
+        if (nums == null || nums.length == 0) {
             return 0;
         }
-        Arrays.sort(nums);//sort from small to big
-        int len=0;
-        for(int i=0;i<nums.length;i++)
-        {
-            if(nums[i]!=nums[len])//different from previous one
-            {
-                nums[++len]=nums[i];
+        Arrays.sort(nums);
+        int slow = 0;
+        int fast = 1;
+        
+        while (fast < nums.length) {
+            if (nums[fast] != nums[slow]) {
+                nums[++slow] = nums[fast++];
+            } else {
+                fast++;
             }
         }
-        return len+1;
+        return slow + 1;
     }
 }
