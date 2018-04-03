@@ -19,7 +19,7 @@ public class Solution {
     int left = 0;
     int right = array.length - 1;
     while (left <= right) {
-      int mid = left + (right - left);
+      int mid = left + (right - left) / 2;
       if (array[mid] == target) {
         return mid;
       } else if (array[mid] > target) {
