@@ -17,7 +17,7 @@ then
 -3 1 2 4 6 for the right
 */
 
-
+// Version 1:
 public class Solution {
   public int[] quickSort(int[] array) {
     // Write your solution here
