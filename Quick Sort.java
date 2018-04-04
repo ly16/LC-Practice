@@ -67,3 +67,49 @@ public class Solution {
     array[right] = temp;
   }
 }
+
+
+// Version 2:
+public class Solution {
+    public void sortIntegers2(int[] A) {
+        // write your code here
+        if (A == null || A.length == 0) {
+            return;
+        }
+        quickSort(A, 0, A.length - 1);
+    }
+    
+    private void quickSort(int[] A, int start, int end) {
+        if (start >= end) {
+            return;
+        }
+        int left = start;
+        int right = end;
+        int pivotIndex = pivotGener(A, left, right);
+        int pivot = A[pivotIndex];
+        
+        while (left <= right) {
+            while (left <= right && A[left] < pivot) {
+                left++;
+            } 
+            while (left <= right && A[right] > pivot) {
+                right--;
+            }
+            if (left <= right) {
+                swap(A, left++, right--);
+            }
+        }
+        quickSort(A, start, right);
+        quickSort(A, left, end);
+    }
+    
+    private int pivotGener(int[] A, int left, int right) {
+        return left + (int) (Math.random() * (right - left + 1));
+    }
+    
+    private void swap(int[] A, int left, int right) {
+        int tmp = A[left];
+        A[left] = A[right];
+        A[right] = tmp;
+    }
+}
