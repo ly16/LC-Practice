@@ -17,7 +17,7 @@ time=O(nlogn)
 space=o(n)
 */
 
-
+// version 1
 public class Solution {
   public int[] mergeSort(int[] array) {
     // Write your solution here.
@@ -57,4 +57,46 @@ public class Solution {
       array[left++] = helper[leftIndex++];
     }
   }
+}
+
+
+// version 2:
+public class Solution {
+    public void sortIntegers2(int[] A) {
+        // write your code here
+        if (A == null || A.length == 0) {
+            return;
+        }
+        int[] tmp = new int[A.length];
+        mergeSort(A, tmp, 0, A.length - 1);
+    }
+    
+    private void mergeSort(int[] A, int[] tmp, int start, int end) {
+        if (start >= end) {
+            return;
+        }
+        int mid = start + (end - start) / 2;
+        mergeSort(A, tmp, start, mid);
+        mergeSort(A, tmp, mid + 1, end);
+        merge(A, tmp, start, mid, end);
+    }
+    
+    private void merge(int[] A, int[] tmp, int start, int mid, int end) {
+        for (int i = start; i <= end; i++) {
+            tmp[i] = A[i];
+        }
+        int left = start;
+        int right = mid + 1;
+        int index = start;
+        while (left <= mid && right <= end) {
+            if (tmp[left] < tmp[right]) {
+                A[index++] = tmp[left++];
+            } else {
+                A[index++] = tmp[right++];
+            }
+        }
+        while (left <= mid) {
+            A[index++] = tmp[left++];
+        }
+    }
 }
