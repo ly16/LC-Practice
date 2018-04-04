@@ -3,59 +3,59 @@ Find K-th largest element in an array.
 
 Example
 In array [9,3,2,4,8], the 3rd largest element is 4.
-In array [1,2,3,4,5], the 1st largest element is 5, 2nd largest element is 4, 3rd largest element is 3 and etc.
+In array [1,2,3,4,5], the 1st largest element is 5, 
+2nd largest element is 4, 3rd largest element is 3 and etc.
+
+time = O(n) since O(n + n/2 + n/4 + ...) = O(n), which is different from the quicksort
+space = O(logn)
 */
+
 class Solution {
-    /*
-     * @param k : description of k
-     * @param nums : array of nums
-     * @return: description of return
-     */
     public int kthLargestElement(int k, int[] nums) {
         // write your code here
-        if(nums==null || nums.length==0){
-            return 0;
+        if (nums == null || nums.length == 0 || k <= 0) {
+            return -1;
         }
-        if(k<=0){
-            return 0;
-        }
-        //the largest on the most right, num.length-k+1 is the (index+1)
-        return helper(nums, 0, nums.length - 1, nums.length-k+1);
+        return quickSelect(nums, k, 0, nums.length - 1);
     }
     
-    public int helper(int[]nums, int left, int right, int n){
-        if(left==right){
-            return nums[left];
-        }
-        int position= partition(nums, left, right);
-        if(position+1 ==n){
-            return nums[position];
-        }else if(position+1 <n){
-            return helper(nums, position+1, right,n);
-        }else{
-            return  helper(nums, left, position-1,n);
-        }
-    }
-    
-    public int partition(int[] nums, int left, int right){
-        int pivot=nums[left];
-        //the first num from the left is the lth largest num
-        while(left< right){
-            while(left< right && nums[right]>=pivot){
+    private int quickSelect(int[] nums, int k, int start, int end) {
+        int left = start;
+        int right = end;
+        int pivotIndex = pivotGen(start, end, nums);
+        int pivot = nums[pivotIndex];
+        
+        while(left <= right) {
+            // sort from large to small, so the left part is larger
+            // similar as find the kth smallest one
+            while (left <= right && nums[left] > pivot) {
+                left++;
+            } 
+            while (left <= right && nums[right] < pivot) {
                 right--;
             }
-            nums[left]= nums[right];
-            
-            while(left< right && nums[left]<=pivot){
-                left++;
+            if (left <= right) {
+                swap(left++, right--, nums);
             }
-            nums[right]= nums[left];
         }
-        //insert the pivot to the lth position
-        nums[left]=pivot;
-        return left;
+        if (start + k - 1 <= right) {
+            return quickSelect(nums, k, start, right);
+        }
+        if (start + k - 1 >= left) {
+            return quickSelect(nums, k - (left - start), left, end);
+        }
+        return nums[right + 1];
     }
     
+    private int pivotGen(int start, int end, int[] nums) {
+        return start + (int) (Math.random() * (end - start + 1));
+    }
+    
+    private void swap(int left, int right, int[] nums) {
+        int tmp = nums[left];
+        nums[left] = nums[right];
+        nums[right] = tmp;
+    }
 }
 
 
