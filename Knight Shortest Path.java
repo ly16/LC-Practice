@@ -50,8 +50,6 @@ public class Solution {
     int[] deltaY = {2, -2, 1, -1, 2, -2, 1, -1};
     
     public int shortestPath(boolean[][] grid, Point source, Point destination) {
-        // time = O(mn)
-        // space = O()
         if (grid == null || grid.length == 0 || grid[0].length == 0) {
             return 0;
         }
