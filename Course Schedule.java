@@ -15,8 +15,8 @@ methods:
 2. same as topological sorting
 3. compare the length with the numCourses
 
-time = O(n)
-space = O(n)
+time = O(V+E)
+space = O(V)
 */
 
 
