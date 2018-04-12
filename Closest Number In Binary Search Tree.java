@@ -41,7 +41,7 @@ The sequence [1, 2, 3, #, #, 4] represents the following binary tree:
 
 
 
-time = O(height) = O(log(n))
+time = O(height) = O(n)
 space = O(1)
 */
 
@@ -57,26 +57,27 @@ space = O(1)
  *   }
  * }
  */
+
 public class Solution {
-  public int closest(TreeNode root, int target) {
-    // Write your solution here
-    int result = root.key;
-    while (root != null) {
-    	if (root.key == target) {
-      	return root.key;
-      } else {
-      	if (Math.abs(root.key - target) < Math.abs(result - target)) {
-        	result = root.key;
+    public int closestValue(TreeNode root, double target) {
+        // write your code here
+        int closest = root.key;
+        while (root != null) {
+            if (root.key == target) {
+                return root.key;
+            }
+            if (Math.abs(root.key- target) < Math.abs(closest - target)) {
+                closest = root.key;
+            } 
+            if (root.key < target) {
+                root = root.right;
+            } else {
+                root = root.left;
+            }
         }
-      }
-      if (root.key > target) {
-      	root = root.left;
-      } else {
-      	root = root.right;
-      }
+        return closest;
     }
-    return result;
-  }
 }
+
 
 
