@@ -12,6 +12,9 @@ A)  3            B)    3
   9  20                 20
     /  \                / \
    15   7              15  7
+   
+time = O(nlogn)
+space = O(n)
 */
 
 /**
@@ -25,33 +28,29 @@ A)  3            B)    3
  *     }
  * }
  */
-class ResultType {
-    public boolean isBalanced;
-    public int maxDepth;
-}
 
 
 public class Solution {
-    /**
-     * @param root: The root of binary tree.
-     * @return: True if this Binary tree is Balanced, or false.
-     */
     public boolean isBalanced(TreeNode root) {
         // write your code here
-         return maxDepth(root) != -1;
+        if (root == null) {
+            return true;
+        }
+        return getHeight(root) != -1;
     }
     
-    private int maxDepth(TreeNode root) {
+    private int getHeight(TreeNode root) {
         if (root == null) {
             return 0;
         }
-
-        int left = maxDepth(root.left);
-        int right = maxDepth(root.right);
-        if (left==-1 ||right==-1 || Math.abs(left-right) > 1) {
+        int left = getHeight(root.left);
+        int right = getHeight(root.right);
+        if (left == -1 || right == -1) {
             return -1;
         }
-    return Math.max(left, right) + 1;
- 
+        if (Math.abs(right - left) > 1) {
+            return -1;
+        }
+        return Math.max(right, left) + 1;
     }
 }
