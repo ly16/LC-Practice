@@ -17,8 +17,11 @@ An example:
   3   5
 The above binary tree is serialized as {2,1,4,#,#,3,5} (in level order).
 
-
+time = O(n)
+space = O(height) = O(n)
 */
+
+
 /**
  * Definition of TreeNode:
  * public class TreeNode {
@@ -30,24 +33,19 @@ The above binary tree is serialized as {2,1,4,#,#,3,5} (in level order).
  *     }
  * }
  */
+
 public class Solution {
-    /**
-     * @param root: The root of binary tree.
-     * @return: True if the binary tree is BST, or false
-     */
-    private TreeNode last = null;
     public boolean isValidBST(TreeNode root) {
         // write your code here
-       if(root == null){
-           return true;
-       }
-       if(!isValidBST(root.left)){
-           return false;
-       }
-       if(last!=null && root.val<=last.val){
-           return false;
-       }
-       last=root;
-       return isValidBST(root.right);
+        return checkBST(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+    private boolean checkBST(TreeNode node, int min, int max) {
+        if (node == null) {
+            return true;
+        }
+        if (node.val < min || node.val > max) {
+            return false;
+        }
+        return checkBST(node.left, min, node.val - 1) && checkBST(node.right, node.val + 1, max);
     }
 }
