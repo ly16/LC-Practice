@@ -13,7 +13,7 @@ All root-to-leaf paths are:
 ]
 
 time = O(n)
-space = O(height) = O(n)
+space = O(n^2)
 */
 
 /**
