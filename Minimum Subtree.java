@@ -10,7 +10,7 @@ Given a binary tree:
 0   2 -4  -5 
 return the node 1.
 
-time = O(n^2)
+time = O(n)
 space = O(height) = O(n)
 */
 
