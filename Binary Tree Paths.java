@@ -13,7 +13,7 @@ All root-to-leaf paths are:
 ]
 
 time = O(n)
-space = O(n^2)
+space = O(n^2) build new string every level
 */
 
 /**
