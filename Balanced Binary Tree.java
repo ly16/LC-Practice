@@ -13,7 +13,7 @@ A)  3            B)    3
     /  \                / \
    15   7              15  7
    
-time = O(nlogn)
+time = O(nlogn) -> O(n)
 space = O(n)
 */
 
@@ -44,8 +44,11 @@ public class Solution {
             return 0;
         }
         int left = getHeight(root.left);
+        if (left == -1) {
+            return -1;
+        }
         int right = getHeight(root.right);
-        if (left == -1 || right == -1) {
+        if (right == -1) {
             return -1;
         }
         if (Math.abs(right - left) > 1) {
