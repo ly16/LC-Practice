@@ -4,7 +4,8 @@ Given a binary search tree, write a function kthSmallest to find the kth smalles
 Example
 Given root = {1,#,2}, k = 2, return 2.
 
-time = O(n)     in-order dfs traversal -> ascending order -> get the kth smallest
+in-order dfs traversal -> ascending order -> get the kth smallest
+time = O(n)     
 space = O(height) = O(n)
 */
 
