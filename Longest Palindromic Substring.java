@@ -38,6 +38,7 @@ public class Solution {
         start = i - longest / 2 + 1;
       }
     }
+    // end exclusive
     return s.substring(start, start + longest);
   }
   
