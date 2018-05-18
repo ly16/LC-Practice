@@ -12,7 +12,7 @@ Input:     "abcbcbd"
 Output:  "bcbcb"
 
 time = O(n^2)
-space = O(1)    space = O(n) for 2-d dp
+space = O(1)    space = O(n^2) for 2-d dp
 */
 
 /* Method 1 enumeration */
