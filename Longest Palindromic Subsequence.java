@@ -7,8 +7,8 @@ Given s = "bbbab" return 4
 One possible longest palindromic subsequence is "bbbb".
 
 2-d dp
-time = O(n)
-space = O(n)
+time = O(n^2)
+space = O(n^2)
 */
 
 public class Solution {
