@@ -49,6 +49,7 @@ public class Solution {
     return result;
   }
   
+  // last occurence
   private int smallerOrQqual(int[] array, int target) {
     int left = 0;
     int right = array.length - 1;
