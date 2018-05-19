@@ -14,7 +14,6 @@ target = 3
 Output: true
 
 Example 2:
-
 Input:
 matrix = [
   [1,   3,  5,  7],
