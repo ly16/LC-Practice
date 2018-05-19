@@ -73,7 +73,9 @@ public class Solution {
 
 
 
-/*LeetCode version
+/*
+LeetCode version
+
 time = O(nlogn + k + klogk)
 space = O(k)
 */
@@ -122,3 +124,58 @@ class Solution {
     }
 }
 
+
+
+/*
+LeetCode version
+
+time = O(nlogn + k)
+space = O(k)
+*/
+class Solution {
+    // assume no duplicates
+    public List<Integer> findClosestElements(int[] arr, int k, int x) {
+        List<Integer> result = new ArrayList<Integer>();
+        if (arr == null || arr.length == 0) {
+            return result;
+        }
+        if (k == 0) {
+            return result;
+        }
+        int left = findLargestSmaller(arr, x);
+        int right = left + 1;
+        for (int i = 0; i < k; i++) {
+            if (right >= arr.length || (left >= 0 && x - arr[left] <= arr[right] - x)) {
+                left--;
+            } else {
+                right++;
+            }
+        }
+
+        for (int i = left + 1; i <= left + k; i++) {
+            result.add(arr[i]); // O(k)
+        }
+        return result;
+    }
+    
+    // last occurence
+    public int findLargestSmaller(int[] arr, int x) {
+        int left = 0;
+        int right = arr.length - 1;
+        while (left + 1 < right) {
+            int mid = left + (right - left) / 2;
+            if (arr[mid] <= x) {
+                left = mid;
+            } else {
+                right = mid;
+            }
+        }
+        
+        if (arr[right] <= x) {
+            return right;
+        } else if (arr[left] <= x) {
+            return left;
+        } 
+        return -1;
+    }
+}
