@@ -52,7 +52,7 @@ public class Solution {
                     hashCode += BASE;
                 }
             }
-            // double check
+            // double check, substring end exclusive
             if (hashCode == targetCode) {
                 if (source.substring(i - m + 1, i + 1).equals(target)) {
                     return i - m + 1;
