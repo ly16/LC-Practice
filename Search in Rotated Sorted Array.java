@@ -28,7 +28,7 @@ public class Solution {
                 return mid;
             } 
             // first ascending part
-            if (A[mid] > A[left]) {
+            if (A[mid] >= A[left]) {
                 if (target >= A[left] && target < A[mid]) {
                     right = mid - 1;
                 } else {
