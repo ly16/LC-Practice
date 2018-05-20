@@ -16,7 +16,7 @@ Consider the following matrix:
 ]
 Given target = 3, return 2.
 
-time = O(nm)
+time = O(n+m)
 space = O(1)
 */
 
