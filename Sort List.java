@@ -21,6 +21,9 @@ space = O(n)  for the new list
  *     ListNode(int x) { val = x; }
  * }
  */
+
+
+// merge sort version:
 class Solution {
     // use merge sort with O(nlogn)
     public ListNode sortList(ListNode head) {
