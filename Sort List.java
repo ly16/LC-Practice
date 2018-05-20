@@ -10,7 +10,8 @@ Input: -1->5->3->4->0
 Output: -1->0->3->4->5
 
 time = O(nlogn)
-space = O(n)  for the new list
+space = O(n)  for the new list, merge sort
+space = O(nlogn) quick sort
 */
 
 /**
@@ -23,7 +24,7 @@ space = O(n)  for the new list
  */
 
 
-// merge sort version:
+// merge sort:
 class Solution {
     // use merge sort with O(nlogn)
     public ListNode sortList(ListNode head) {
@@ -69,5 +70,85 @@ class Solution {
         }
         
         return dummy.next;
+    }
+}
+
+
+
+// quick sort:
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    // quick sort
+    public ListNode sortList(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode mid = findMid(head);
+        ListNode dummyLeft = new ListNode(0), curLeft = dummyLeft;
+        ListNode dummyRight = new ListNode(0), curRight = dummyRight;
+        ListNode dummyMid = new ListNode(0), curMid = dummyMid;
+        
+        while (head != null) {
+            if (head.val < mid.val) {
+                curLeft.next = head;
+                curLeft = curLeft.next;
+            } else if (head.val > mid.val) {
+                curRight.next = head;
+                curRight = curRight.next;
+            } else {
+                curMid.next = head;
+                curMid = curMid.next;
+            }
+            head = head.next;
+        }
+        
+        curLeft.next = null;
+        curRight.next = null;
+        curMid.next = null;
+        ListNode left = sortList(dummyLeft.next);
+        ListNode right = sortList(dummyRight.next);
+        
+        return concat(left, dummyMid.next, right);
+    }
+    
+    private ListNode findMid(ListNode head) {
+        ListNode slow = head, fast = head;
+        while (fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+    
+    private ListNode concat(ListNode left, ListNode mid, ListNode right) {
+        ListNode dummy = new ListNode(0); 
+        ListNode cur = dummy;
+        cur.next = left;
+        cur = moveEnd(cur);
+        
+        cur.next = mid;
+        cur = moveEnd(cur);
+        
+        cur.next = right;
+        cur = moveEnd(cur);
+        
+        return dummy.next;
+    }
+    
+    private ListNode moveEnd(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        while (head.next != null) {
+            head = head.next;
+        }
+        return head;
     }
 }
