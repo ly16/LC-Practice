@@ -12,29 +12,30 @@ time = O(logn)
 space = O(1)
 */
 
-public class Solution {
-    public int sqrt(int x) {
-        // time = O(logn), space = O(1)
-        // last occurance
-        if (x < 0) {
-            return -1;
+
+class Solution {
+    public int mySqrt(int x) {
+        // assume x >= 0
+        // last occurence
+        if (x == 0) {
+            return 0;
         }
-        if (x == 0 || x == 1) {
-            return x;
-        }
-        int left = 1;
-        int right = x;
+        long left = 1, right = x;
         while (left + 1 < right) {
-            int mid = left + (right - left) / 2;
-            if (1L * mid * mid <= x) {
+            long mid = left + (right - left) / 2;
+            if (mid * mid == x) {
+                return (int) mid;
+            } else if (mid * mid < x) {
                 left = mid;
             } else {
                 right = mid;
             }
         }
-        if (1L * right * right <= x) {
-            return right;
+        
+        if (right * right < x) {
+            return (int) right;
+        } else {
+            return (int) left;
         }
-        return left;
     }
 }
