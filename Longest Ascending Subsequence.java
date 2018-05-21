@@ -20,37 +20,38 @@ space = O(n) for the int[]
 
 
 // binary version
-public class Solution {
-  public int longest(int[] array) {
-    // Write your solution here.
-    if (array.length == 0) {
-    	return 0;
+class Solution {
+    public int lengthOfLIS(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        int[] record = new int[nums.length + 1];
+        record[1] = nums[0];
+        int max = 1;
+        
+        for (int i = 1; i < nums.length; i++) {
+            int lgstSml = findLgstSml(record, 1, max, nums[i]);
+            if (lgstSml == max) {
+                record[++max] = nums[i];
+            } else {
+                record[lgstSml + 1] = nums[i];
+            }
+        }
+        return max;
     }
-    int result = 1;
-    int[] longest = new int[array.length + 1];
-    longest[1] = array[0];
-    for (int i = 1; i < array.length; i++) {
-    	int index = find(longest, 1, result, array[i]);
-      if (index == result) {
-      	longest[++result] = array[i];
-      } else {
-      	longest[index + 1] = array[i];
-      }
+    
+    // first occurence num > target, since we cannot consider the equal one
+    private int findLgstSml(int[] record, int left, int right, int target) {
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (record[mid] >= target) {
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        }
+        return right;
     }
-    return result;
-  }
-  
-  private int find(int[] longest, int left, int right, int target) {
-    while (left <= right) {
-      int mid = left + (right - left) / 2;
-    	if (longest[mid] >= target) {
-      	right = mid - 1;
-      } else {
-      	left = mid + 1;
-      }
-    }
-    return right;
-  }
 }
 
 
