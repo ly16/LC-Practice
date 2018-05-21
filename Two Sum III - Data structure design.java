@@ -13,8 +13,13 @@ add(3); add(1); add(2);
 find(3) -> true
 find(6) -> false
 
-time = O(n)
-space = O(n)
+add:
+time = O(1)
+space = O(n) for the map and list
+
+find:
+time = O(n) scan list
+space = O(n) for the map and list
 */
 
 class TwoSum {
