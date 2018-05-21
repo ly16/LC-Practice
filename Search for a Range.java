@@ -27,7 +27,7 @@ class Solution {
     
     // first occurence
     private int findFirst(int[] nums, int target) {
-        int left = 0, right = nums.length;
+        int left = 0, right = nums.length - 1;
         while (left + 1 < right) {
             int mid = left + (right - left) / 2;
             if (nums[mid] >= target) {
@@ -46,7 +46,7 @@ class Solution {
     
     // last occurence
     private int findLast(int[] nums, int target) {
-        int left = 0, right = nums.length;
+        int left = 0, right = nums.length - 1;
         while (left + 1 < right) {
             int mid = left + (right - left) / 2;
             if (nums[mid] <= target) {
