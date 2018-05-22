@@ -31,7 +31,7 @@ public class Solution {
       while (left < right) {
       	int tmp = array[left] + array[right];
         if (array[i] + tmp == target) {
-        	result.add(Arrays.asList(array[i], array[left], array[right]));
+          result.add(Arrays.asList(array[i], array[left], array[right]));
           while (left < right && array[left] == array[left - 1]) {
           	left++;
           }
