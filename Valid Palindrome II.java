@@ -21,10 +21,9 @@ public class Solution {
         while (left < right) {
             if (s.charAt(left) != s.charAt(right)) {
                 break;
-            } else {
-                left++;
-                right--;
             }
+            left++;
+            right--;
         }
         if (left >= right) {
             return true;
@@ -36,10 +35,10 @@ public class Solution {
         while (left < right) {
             if (s.charAt(left) != s.charAt(right)) {
                 return false;
-            } else {
-                left++;
-                right--;
             }
+            left++;
+            right--;
+            
         }
         return true;
     }
