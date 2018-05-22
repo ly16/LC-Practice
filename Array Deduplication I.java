@@ -14,6 +14,8 @@ time = O(n)
 space = O(1)
 */
 
+
+// while version
 public class Solution {
   public int[] dedup(int[] array) {
     // Write your solution here.
@@ -29,6 +31,19 @@ public class Solution {
         fast++;
       }
     }
-    return Arrays.copyOf(array, slow + 1);
+    return slow + 1;
   }
+}
+
+
+// for version
+public int removeDuplicates(int[] nums) {
+    if (nums.length == 0) return 0;
+    int i = 0;
+    for (int j = 1; j < nums.length; j++) {
+        if (nums[j] != nums[i]) {
+            nums[++i] = nums[j];
+        }
+    }
+    return i + 1;
 }
