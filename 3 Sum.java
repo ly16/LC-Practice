@@ -9,6 +9,9 @@ No duplicate triples should be returned, order of the values in the tuple does n
 Examples
 A = {1, 2, 2, 3, 2, 4}, target = 8, return [[1, 3, 4], [2, 2, 4]]
 
+sort: O(nlogn)
+1, 2, 2, 2, 3, 4
+i  l           r
 
 time = O(n^2)
 space = O(1)
@@ -29,10 +32,14 @@ public class Solution {
       	int tmp = array[left] + array[right];
         if (array[i] + tmp == target) {
         	result.add(Arrays.asList(array[i], array[left], array[right]));
-          left++;
           while (left < right && array[left] == array[left - 1]) {
           	left++;
           }
+          while (left < right && array[right] == array[right + 1]) {
+            right--;
+          }
+          left++;
+          right--;
         } else if (tmp + array[i] < target) {
         	left++;
         } else {
