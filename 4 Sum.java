@@ -8,6 +8,9 @@ Examples
 A = {1, 2, 2, 3, 4}, target = 9, return true(1 + 2 + 2 + 4 = 8)
 A = {1, 2, 2, 3, 4}, target = 12, return false
 
+1 2 2 3 4
+j i
+    j   i  
 
 time = O(n^2)
 space = O(n) for a hashmap
@@ -29,6 +32,7 @@ public class Solution {
     for (int i = 1; i < array.length; i++) {
     	for (int j = 0; j < i; j++) {
       	int pairSum = array[j] + array[i];
+        // no overlap, avoid duplicated results
         if (map.containsKey(target - pairSum) && map.get(target - pairSum).right < j) {
         	return true;
         } 
