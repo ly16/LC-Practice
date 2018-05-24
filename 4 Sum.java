@@ -63,8 +63,8 @@ class Solution {
 
 			for (int j = i + 1; j < nums.length - 2; j++) {
 				if (j != i + 1 && nums[j] == nums[j - 1]) {
-                    continue;
-                }   
+                    			continue;
+                		}   
 				int left = j + 1;
 				int right = nums.length - 1;
 				while (left < right) {
@@ -74,7 +74,7 @@ class Solution {
 					} else if (sum > target) {
 						right--;
 					} else {
-                        result.add(Arrays.asList(nums[i], nums[j], nums[left++],nums[right--]));
+                        			result.add(Arrays.asList(nums[i], nums[j], nums[left++],nums[right--]));
 						while (left < right && nums[left] == nums[left - 1]) {
 							left++;
 						}
@@ -87,5 +87,5 @@ class Solution {
 		}
 
 		return result;
-    }
+    	}
 }
