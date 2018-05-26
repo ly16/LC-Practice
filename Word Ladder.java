@@ -25,7 +25,6 @@ public class Solution {
             return 1;
         }
         dict.add(start);
-        dict.add(end);
         Set<String> set = new HashSet<>();
         Queue<String> queue = new LinkedList<>();
         set.add(start);
@@ -70,6 +69,68 @@ public class Solution {
     
     private String replaceChar(char c, int i, String word) {
         char[] array = word.toCharArray();
+        array[i] = c;
+        return new String(array);
+    }
+}
+
+
+// leetcode version:
+class Solution {
+    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+        if (beginWord == null || endWord == null || wordList == null) {
+            return 0;
+        }
+        if (beginWord.equals(endWord)) {
+            return 1;
+        }
+        Set<String> wordDict = new HashSet<>();
+        for (String s : wordList) {
+            wordDict.add(s);
+        }
+        
+        wordDict.add(beginWord);
+        Set<String> visited = new HashSet<>();
+        Queue<String> queue = new LinkedList<>();
+        visited.add(beginWord);
+        queue.offer(beginWord);
+        
+        int count = 1;
+        while (!queue.isEmpty()) {
+            count++;
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                String cur = queue.poll();
+                for (String next : findNext(cur, wordDict)) {
+                    if (visited.contains(next)) {
+                        continue;
+                    }
+                    if (next.equals(endWord)) {
+                        return count;
+                    }
+                    visited.add(next);
+                    queue.offer(next);
+                }
+            }
+        }
+        return 0;
+    }
+    
+    private List<String> findNext(String cur, Set<String> wordDict) {
+        List<String> nextList = new ArrayList<>();
+        for (int i = 0; i < cur.length(); i++) {
+            for (char c = 'a'; c <= 'z'; c++) {
+                String tmp = replaceChar(cur, i, c);
+                if (wordDict.contains(tmp)) {
+                    nextList.add(tmp);
+                }
+            }
+        }
+        return nextList;
+    }
+    
+    private String replaceChar(String cur, int i, char c) {
+        char[] array = cur.toCharArray();
         array[i] = c;
         return new String(array);
     }
