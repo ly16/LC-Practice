@@ -13,7 +13,7 @@ Note: you can assume that no duplicate edges will appear in edges. Since all edg
 [0,1] is the same as [1,0] and thus will not appear together in edges.
 
 time = O(V+E)
-space = O(V)
+space = O(V) for the map, queue and set
 */
 
 class Solution {
