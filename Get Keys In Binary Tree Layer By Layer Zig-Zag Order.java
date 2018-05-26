@@ -86,3 +86,58 @@ public class Solution {
     return list;
   }
 }
+
+
+
+// leetcode version
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+        Deque<TreeNode> stack = new LinkedList<>();
+        stack.offerFirst(root);
+        boolean normal = true;
+        
+        while (!stack.isEmpty()) {
+            int size = stack.size();
+            List<Integer> level = new ArrayList<>();
+            for (int i = 0; i < size; i++) {
+                if (normal) {
+                    TreeNode cur = stack.pollLast();
+                    level.add(cur.val);
+                    if (cur.left != null) {
+                        // offer to the different direction
+                        stack.offerFirst(cur.left);
+                    }
+                    if (cur.right != null) {
+                        stack.offerFirst(cur.right);
+                    }
+                } else {
+                    TreeNode cur = stack.pollFirst();
+                    level.add(cur.val);
+                    if (cur.right != null) {
+                        // offer to the different direction
+                        stack.offerLast(cur.right);
+                    } 
+                    if (cur.left != null) {
+                        stack.offerLast(cur.left);
+                    }
+                }
+            }
+            result.add(level);
+            normal = !normal;
+        }
+        return result;
+    }
+}
