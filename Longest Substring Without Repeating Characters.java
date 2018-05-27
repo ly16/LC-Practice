@@ -1,10 +1,11 @@
 /*
-Given a string, find the longest substring without any repeating characters and return the length of it. The input string is guaranteed to be not null.
+Given a string, find the longest substring without any repeating characters and return the length of it. 
+The input string is guaranteed to be not null.
 
 For example, the longest substring without repeating letters for "bcdfbd" is "bcdf", we should return 4 in this case.
 
-time = O(n)
-space = O(1) inplace
+time = O(2n) = O(n)
+space = O(n)
 */
 
 public class Solution {
@@ -25,4 +26,27 @@ public class Solution {
     }
     return longest;
   }
+}
+
+
+// leetcode version (optional)
+// time = O(n), space = O(m) for the constant int[]
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        if (s == null || s.length() == 0) {
+            return 0;
+        }
+        // int[256] for Extended ASCII
+        int[] record = new int[256];
+        int result = 0;
+        for (int i = 0, j = 0; j < s.length(); j++) {
+            // appear before
+            i = Math.max(i, record[s.charAt(j)]);
+            result = Math.max(result, j - i + 1);
+            // record j 
+            record[s.charAt(j)] = j + 1;
+        }
+        return result;
+    }
 }
