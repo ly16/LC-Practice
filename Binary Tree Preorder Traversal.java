@@ -10,37 +10,37 @@ Given:
  / \
 4   5
 return [1,2,4,5,3].
+
+
+time = O(n)
+space = O(height) = O(n)
 */
 
 /**
- * Definition of TreeNode:
+ * Definition for a binary tree node.
  * public class TreeNode {
- *     public int val;
- *     public TreeNode left, right;
- *     public TreeNode(int val) {
- *         this.val = val;
- *         this.left = this.right = null;
- *     }
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
  * }
  */
-public class Solution {
-    /**
-     * @param root: The root of binary tree.
-     * @return: Preorder in ArrayList which contains node values.
-     */
-    public ArrayList<Integer> preorderTraversal(TreeNode root) {
-        // write your code here
-        ArrayList<Integer> result = new ArrayList<>();
-        traverse(root, result);
-        return result;
+ 
+ // recursive version:
+class Solution {
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        return helper(root, result);
     }
-    //put the new root into result, from the left to the right
-    private void traverse(TreeNode root, ArrayList<Integer> result){
-        if(root==null){
-            return;
+    
+    private List<Integer> helper(TreeNode root, List<Integer> result) {
+        if (root == null) {
+            return result;
         }
         result.add(root.val);
-        traverse(root.left, result);
-        traverse(root.right, result);
+        helper(root.left, result);
+        helper(root.right, result);
+        return result;
     }
 }
+
