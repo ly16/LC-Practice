@@ -46,6 +46,8 @@ space = O(n)
  *   }
  * }
  */
+
+// iterative version
 public class Solution {
   public List<Integer> inOrder(TreeNode root) {
     // Write your solution here.
@@ -71,3 +73,31 @@ public class Solution {
   }
 }
 
+
+// recursive version
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        return helper(root, result);
+    }
+    
+    private List<Integer> helper(TreeNode root, List<Integer> result) {
+        if (root == null) {
+            return result;
+        }
+        helper(root.left, result);
+        result.add(root.val);
+        helper(root.right, result);
+        return result;
+    }
+}
