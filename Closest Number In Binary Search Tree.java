@@ -81,3 +81,36 @@ public class Solution {
 
 
 
+// leetcode version
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public int closestValue(TreeNode root, double target) {
+        if (root == null) {
+            return 0;
+        }
+        
+        int result = root.val;
+        while (root != null) {
+            if (root.val == target) {
+                return root.val;
+            }
+            if (Math.abs(root.val - target) < Math.abs(result - target)) {
+                result = root.val;
+            }
+            if (root.val < target) {
+                root = root.right;
+            } else {
+                root = root.left;
+            }
+        }
+        return result;
+    }
+}
