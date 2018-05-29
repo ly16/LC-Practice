@@ -6,7 +6,7 @@ Given root = {1,#,2}, k = 2, return 2.
 
 in-order dfs traversal -> ascending order -> get the kth smallest
 time = O(n)     
-space = O(height) = O(n)
+space = O(height) = O(logn)
 */
 
 /**
