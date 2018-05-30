@@ -71,3 +71,32 @@ public class Solution {
     return root;
   }
 }
+
+
+//leetcode version
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        int[] preIndex = new int[] {0};
+        int[] inIndex = new int[] {0};
+        return helper(preorder, inorder, preIndex, inIndex, Integer.MAX_VALUE);
+    }
+    private TreeNode helper(int[] preorder, int[] inorder, int[] preIndex, int[] inIndex, int target) {
+        if (inIndex[0] >= inorder.length || inorder[inIndex[0]] == target) {
+            return null;
+        }
+        TreeNode root = new TreeNode(preorder[preIndex[0]++]);
+        root.left = helper(preorder, inorder, preIndex, inIndex, root.val);
+        inIndex[0]++;
+        root.right = helper(preorder, inorder, preIndex, inIndex, target);
+        return root;
+    }
+}
