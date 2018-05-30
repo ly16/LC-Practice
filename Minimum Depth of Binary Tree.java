@@ -10,40 +10,32 @@ Given a binary tree as follow:
 2   3
    / \
   4   5
+
+time = O(n)
+space = O(height) = O(n)
 */
 
+
 /**
- * Definition of TreeNode:
+ * Definition for a binary tree node.
  * public class TreeNode {
- *     public int val;
- *     public TreeNode left, right;
- *     public TreeNode(int val) {
- *         this.val = val;
- *         this.left = this.right = null;
- *     }
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
  * }
  */
-public class Solution {
-    /**
-     * @param root: The root of binary tree.
-     * @return: An integer.
-     */
+class Solution {
     public int minDepth(TreeNode root) {
-        // write your code here
-        if(root==null){
+        if (root  == null) {
             return 0;
         }
-        return minRoot(root);
-    }
-    
-    private int minRoot(TreeNode root){
-        // To end recursive for the unbalanced tree
-        if(root == null){
-            return Integer.MAX_VALUE;
+        int left = minDepth(root.left);
+        int right = minDepth(root.right);
+        if (left == 0 || right == 0) {
+            return left + right + 1;
+        } else {
+            return Math.min(left, right) + 1;
         }
-        if(root.left==null && root.right == null){
-            return 1;
-        }
-        return Math.min(minRoot(root.left), minRoot(root.right))+1;
     }
 }
