@@ -7,41 +7,37 @@
   2     6
  / \    / \
 1   3  5   7
+
+time = O(n)
+space = O(logn)
 */
 
 /**
- * Definition of TreeNode:
+ * Definition for a binary tree node.
  * public class TreeNode {
- *     public int val;
- *     public TreeNode left, right;
- *     public TreeNode(int val) {
- *         this.val = val;
- *         this.left = this.right = null;
- *     }
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
  * }
- */ 
-public class Solution {
-    /**
-     * @param A: an integer array
-     * @return: a tree node
-     */
-    public TreeNode sortedArrayToBST(int[] A) {  
-        // write your code here
-        int length= A.length;
-        TreeNode root=null;
-        root = recursion(A, 1, length, root);
-        A=null;
-        return root;
-    }  
-    
-    public TreeNode recursion(int[] array, int lhs, int rhs, TreeNode root){
-        if(lhs <= rhs){
-            //avoid for overflow
-            int mid = rhs+ (lhs - rhs)/2;  
-            root = new TreeNode(array[mid-1]);
-            root.left = recursion(array, lhs, mid-1,root.left);
-            root.right= recursion(array, mid+1, rhs, root.right);
+ */
+class Solution {
+    public TreeNode sortedArrayToBST(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return null;
         }
-        return root;
+        TreeNode result = helper(nums, 0, nums.length - 1);
+        return result;
+    }
+    
+    private TreeNode helper(int[] nums, int left, int right) {
+        if (left > right) {
+            return null;
+        }
+        int mid = left + (right - left) / 2;
+        TreeNode node = new TreeNode(nums[mid]);
+        node.left = helper(nums, left, mid - 1);
+        node.right = helper(nums, mid + 1, right);
+        return node;
     }
 }
