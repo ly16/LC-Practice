@@ -15,7 +15,7 @@ One possible answer is: [0,-3,9,-10,null,5], which represents the following heig
  -10  5
 
 
-time = O(n)
+time = O(nlogn) for each find middle O(n), logn heads
 space = O(logn)
 */
 
