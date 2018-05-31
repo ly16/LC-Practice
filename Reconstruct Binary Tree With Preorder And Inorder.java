@@ -100,3 +100,42 @@ class Solution {
         return root;
     }
 }
+
+
+// index version
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        int preLen = preorder.length - 1;
+        int inLen = inorder.length - 1;
+        return helper(preorder, 0, preLen, inorder, 0, inLen);
+    }
+    
+    private TreeNode helper(int[] preorder, int preStart, int preEnd, int[] inorder, int inStart, int inEnd) {
+        if (preStart > preEnd || inStart > inEnd) {
+            return null;
+        }
+        int rootVal = preorder[preStart];
+        int index = 0;
+        for (int i = inStart; i <= inEnd; i++) {
+            if (inorder[i] == rootVal) {
+                index = i;
+                break;
+            }
+        }
+        int len = index - inStart;
+        TreeNode root = new TreeNode(rootVal);
+        root.left = helper(preorder, preStart + 1, preStart + len, inorder, inStart, index - 1);
+        root.right = helper(preorder, preStart + len + 1, preEnd, inorder, index + 1, inEnd);
+        
+        return root;
+    }
+}
