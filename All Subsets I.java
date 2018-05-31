@@ -37,3 +37,32 @@ public class Solution {
   }
 }
 
+
+
+// leetcode version
+class Solution {
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (nums == null || nums.length == 0) {
+            return result;
+        }
+        Arrays.sort(nums);
+        helper(nums, result, new ArrayList<Integer>(), 0);
+        return result;
+    }
+    
+    private void helper(int[] nums, List<List<Integer>> result, List<Integer> level, int index) {
+        // base case
+        if (index == nums.length) {
+            result.add(new ArrayList<Integer>(level));
+            return;
+        }
+        
+        // not add
+        helper(nums, result, level, index + 1);
+        // add and remove
+        level.add(nums[index]);
+        helper(nums, result, level, index + 1);
+        level.remove(level.size() - 1);
+    }
+}
