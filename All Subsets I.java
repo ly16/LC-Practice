@@ -67,7 +67,7 @@ class Solution {
 }
 
 
-// time = O(n!)
+// time = O(2^n)
 // space = O(n)
 class Solution {
     public List<List<Integer>> subsets(int[] nums) {
