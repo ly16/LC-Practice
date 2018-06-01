@@ -43,6 +43,7 @@ public class Solution {
 
 
 // leetcode version (duplicate)
+// time = O(n^2), space = O(n)
 class Solution {
     public List<List<Integer>> subsetsWithDup(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
