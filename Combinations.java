@@ -13,7 +13,7 @@ Output:
   [1,4],
 ]
 
-time = O(n!)
+time = O(n^2)
 space = O(n)
 */
 
