@@ -11,7 +11,7 @@ Set = "", all the subsets are [""]
 Set = null, all the subsets are []
 
 
-time = O(n!)
+time = O(n^2)
 space = O(n)
 */
 
