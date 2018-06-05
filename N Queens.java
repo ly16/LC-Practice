@@ -53,3 +53,56 @@ public class Solution {
     return true;
   }
 }
+
+
+// leetcode version
+class Solution {
+    public List<List<String>> solveNQueens(int n) {
+        List<List<String>> result = new ArrayList<>();
+        if (n <= 0) {
+            return result;
+        }
+        dfs(result, new ArrayList<>(), n);
+        return result;
+    }
+    
+    private void dfs(List<List<String>> result, List<Integer> cols, int n) {
+        if (cols.size() == n) {
+            result.add(new ArrayList<>(build(cols)));
+            return;
+        }
+        for (int i = 0; i < n; i++) {
+            if (valid(cols, i)) {
+                cols.add(i);
+                dfs(result, cols, n);
+                cols.remove(cols.size() - 1);
+            }
+        }
+    }
+    
+    private List<String> build(List<Integer> cols) {
+        List<String> chess = new ArrayList<>();
+        for (int i = 0; i < cols.size(); i++) {
+            StringBuilder sb = new StringBuilder();
+            for (int j = 0; j < cols.size(); j++) {
+                sb.append(j == cols.get(i) ? 'Q' : '.');
+            }
+            chess.add(sb.toString());
+        }
+        return chess;
+    }
+    
+    private boolean valid(List<Integer> cols, int col) {
+        int rows = cols.size();
+        for (int i = 0; i < rows; i++) {
+            if (cols.get(i) == col) {
+                return false;
+            }
+            if (Math.abs(col - cols.get(i)) == rows - i) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+}
