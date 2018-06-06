@@ -19,8 +19,8 @@ Example 4:
 Input: pattern = "abba", str = "dog dog dog dog"
 Output: false
 
-time = O(n)
-space = O(n)
+time = O(n) linear scan
+space = O(n) for the hashmap
 */
 
 class Solution {
