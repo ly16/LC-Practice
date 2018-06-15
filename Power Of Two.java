@@ -23,3 +23,15 @@ public class Solution {
     return number == 1;
   }
 }
+
+
+// method 2:
+class Solution {
+    public boolean isPowerOfTwo(int n) {
+        if (n <= 0) {
+            return false;
+        }
+        // trick here
+        return (n&(n-1)) == 0;
+    }
+}
