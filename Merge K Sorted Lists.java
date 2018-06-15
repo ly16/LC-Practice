@@ -51,3 +51,58 @@ public class Solution {
   }
   
 }
+
+
+// method2: merge in order
+// time = O(nklogk)
+// space = O(logk)
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public ListNode mergeKLists(ListNode[] lists) {
+        if (lists.length == 0) {
+            return null;
+        }
+        return merge(lists, 0, lists.length - 1);
+    }
+    
+    private ListNode merge(ListNode[] lists, int left, int right) {
+        if (left == right) {
+            return lists[left];
+        }
+        int mid = left + (right - left) / 2;
+        ListNode start = merge(lists, left, mid);
+        ListNode end = merge(lists, mid + 1, right);
+        return mergeTwoLists(start, end);
+        
+    }
+    
+    private ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        ListNode dummy = new ListNode(0);
+        ListNode cur = dummy;
+        while (list1 != null && list2 != null) {
+            if (list1.val < list2.val) {
+                cur.next = list1;
+                cur = list1;
+                list1 = list1.next;
+            } else {
+                cur.next = list2;
+                cur = list2;
+                list2 = list2.next;
+            }
+        }
+        if (list1 != null) {
+            cur.next = list1;
+        } else {
+            cur.next = list2;
+        }
+        
+        return dummy.next;
+    }
+}
