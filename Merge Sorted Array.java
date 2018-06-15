@@ -4,6 +4,9 @@ Given two sorted integer arrays A and B, merge B into A as one sorted array.
 Example
 A = [1, 2, 3, empty, empty], B = [4, 5]
 After merge, A will be filled as [1, 2, 3, 4, 5]
+
+time = O(m+n)
+space = O(1) in place
 */
 
 class Solution {
