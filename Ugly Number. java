@@ -31,7 +31,6 @@ public class Solution {
             num /= 5;
         }
         
-        if (num == 1) return true;
         return num == 1;
     }
 }
