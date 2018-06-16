@@ -53,15 +53,13 @@ class Solution {
         if (head == null || head.next == null) {
             return head;
         }
-        ListNode slow = head;
-        ListNode fast = head.next;
-        while (fast != null && fast.next != null) {
-            if (fast.val == slow.val) {
-                slow.next = fast.next;
-                fast.next = fast.next.next;
+        ListNode cur = head;
+        while (cur != null && cur.next != null) {
+            if (cur.val == cur.next.val) {
+                cur.next = cur.next.next;
+            } else {
+                 cur = cur.next;   
             }
-            slow = slow.next;
-            fast = fast.next;
         }
         return head;
     }
