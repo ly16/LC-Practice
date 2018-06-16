@@ -92,13 +92,12 @@ class Solution {
         while (list1 != null && list2 != null) {
             if (list1.val < list2.val) {
                 cur.next = list1;
-                cur = list1;
                 list1 = list1.next;
             } else {
                 cur.next = list2;
-                cur = list2;
                 list2 = list2.next;
             }
+            cur = cur.next;
         }
         if (list1 != null) {
             cur.next = list1;
@@ -134,24 +133,23 @@ public class Solution {
         return lists.get(0);
     }
     
-    private ListNode merge(ListNode a, ListNode b) {
+    private ListNode mergeTwoLists(ListNode list1, ListNode list2) {
         ListNode dummy = new ListNode(0);
-        ListNode tail = dummy;
-        while (a != null && b != null) {
-            if (a.val < b.val) {
-                tail.next = a;
-                a = a.next;
+        ListNode cur = dummy;
+        while (list1 != null && list2 != null) {
+            if (list1.val < list2.val) {
+                cur.next = list1;
+                list1 = list1.next;
             } else {
-                tail.next = b;
-                b = b.next;
+                cur.next = list2;
+                list2 = list2.next;
             }
-            tail = tail.next;
+          cur = cur.next;
         }
-        
-        if (a != null) {
-            tail.next = a;
+        if (list1 != null) {
+            cur.next = list1;
         } else {
-            tail.next = b;
+            cur.next = list2;
         }
         
         return dummy.next;
