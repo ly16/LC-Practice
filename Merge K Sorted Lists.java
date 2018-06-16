@@ -56,9 +56,9 @@ public class Solution {
 }
 
 
-// method2: merge sort version
+// method2: devide and conqure version
 // time = O(nlogk) if large list is on the first place
-// space = O(k)
+// space = O(k) for k levels
 /**
  * Definition for singly-linked list.
  * public class ListNode {
