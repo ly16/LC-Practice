@@ -19,6 +19,9 @@ space = O(k)
  *   }
  * }
  */
+
+
+// method1: heap version
 public class Solution {
   public ListNode merge(List<ListNode> listOfLists) {
     // Write your solution here
