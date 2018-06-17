@@ -10,7 +10,7 @@ read(2), median is 1.5
 read(3), median is 2
 read(10), median is 2.5
 
-time = O(nlogn)
+time = O(logn) for the add
 space = O(n) for the priorityQueue
 */
 
@@ -50,3 +50,44 @@ public class Solution {
     }
   }
 }
+
+
+// leetcode version
+class MedianFinder {
+    private Queue<Integer> smallHeap;
+    private Queue<Integer> largeHeap;
+    /** initialize your data structure here. */
+    public MedianFinder() {
+        largeHeap = new PriorityQueue<>();  // minHeap
+        smallHeap = new PriorityQueue<>(Collections.reverseOrder());    // maxHeap, reverse order
+    }
+    
+    public void addNum(int num) {
+        if (smallHeap.isEmpty() || num <= smallHeap.peek()) {
+            smallHeap.offer(num);
+        } else {
+            largeHeap.offer(num);
+        }
+        // at most, smallHeap - largeHeap = 1
+        if (smallHeap.size() - largeHeap.size() > 1) {
+            largeHeap.offer(smallHeap.poll());
+        } else if (largeHeap.size() > smallHeap.size()) {
+            smallHeap.offer(largeHeap.poll());
+        }
+    }
+    
+    public double findMedian() {
+        if (smallHeap.size() == largeHeap.size()) {
+            return (smallHeap.peek() + largeHeap.peek()) / 2.0;
+        } else {
+            return (double) smallHeap.peek();
+        }
+    }
+}
+
+/**
+ * Your MedianFinder object will be instantiated and called as such:
+ * MedianFinder obj = new MedianFinder();
+ * obj.addNum(num);
+ * double param_2 = obj.findMedian();
+ */
