@@ -54,33 +54,33 @@ public class Solution {
 
 // leetcode version
 class MedianFinder {
-    private Queue<Integer> smallHeap;
-    private Queue<Integer> largeHeap;
+    private Queue<Integer> smallHalf;
+    private Queue<Integer> largeHalf;
     /** initialize your data structure here. */
     public MedianFinder() {
-        largeHeap = new PriorityQueue<>();  // minHeap
-        smallHeap = new PriorityQueue<>(Collections.reverseOrder());    // maxHeap, reverse order
+        largeHalf = new PriorityQueue<>();  // minHeap
+        smallHalf = new PriorityQueue<>(Collections.reverseOrder());    // maxHeap
     }
     
     public void addNum(int num) {
-        if (smallHeap.isEmpty() || num <= smallHeap.peek()) {
-            smallHeap.offer(num);
+        if (smallHalf.isEmpty() || num <= smallHalf.peek()) {
+            smallHalf.offer(num);
         } else {
-            largeHeap.offer(num);
+            largeHalf.offer(num);
         }
         // at most, smallHeap - largeHeap = 1
-        if (smallHeap.size() - largeHeap.size() > 1) {
-            largeHeap.offer(smallHeap.poll());
-        } else if (largeHeap.size() > smallHeap.size()) {
-            smallHeap.offer(largeHeap.poll());
+        if (smallHalf.size() - largeHalf.size() > 1) {
+            largeHalf.offer(smallHalf.poll());
+        } else if (largeHalf.size() > smallHalf.size()) {
+            smallHalf.offer(largeHalf.poll());
         }
     }
     
     public double findMedian() {
-        if (smallHeap.size() == largeHeap.size()) {
-            return (smallHeap.peek() + largeHeap.peek()) / 2.0;
+        if (smallHalf.size() == largeHalf.size()) {
+            return (smallHalf.peek() + largeHalf.peek()) / 2.0;
         } else {
-            return (double) smallHeap.peek();
+            return (double) smallHalf.peek();
         }
     }
 }
