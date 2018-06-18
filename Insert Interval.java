@@ -12,7 +12,7 @@ Output: [[1,2],[3,10],[12,16]]
 Explanation: Because the new interval [4,8] overlaps with [3,5],[6,7],[8,10].
 
 time = O(n)
-space = O(1)
+space = O(n) for the list
 */
 
 
