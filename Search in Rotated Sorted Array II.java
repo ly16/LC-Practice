@@ -26,25 +26,26 @@ class Solution {
             int mid = left + (right - left) / 2;
             if (nums[mid] == target) {
                 return true;
-                // right part
-            } else if (nums[mid] < nums[right] || nums[mid] < nums[left]) {
-                if (target > nums[mid] && target <= nums[right]) {
-                    left = mid + 1;
-                } else {
+            }  
+            // left part, left < target < mid
+            if (nums[left] < nums[mid]) {
+                // only take = in left or right side, we already check the nums[mid]
+                if (target >= nums[left] && target < nums[mid]) {
                     right = mid - 1;
+                } else {
+                    left = mid + 1;
                 }
-                // left part
-            } else if (nums[mid] > nums[left] || nums[mid] > nums[right]) {
-                if (target < nums[mid] && target >= nums[left]) {
-                    right = mid - 1;
-                } else {
+                // right part, mid < target < right
+            } else if (nums[left] > nums[mid]) {
+                if (target <= nums[right] && target > nums[mid]) {
                     left = mid + 1;
+                } else {
+                    right = mid - 1;
                 }
             } else {
-            //If we get here, that means nums[start] == nums[mid] == nums[end], then shifting out
-            //any of the two sides won't change the result but can help remove duplicate from
-            //consideration, here we just use end-- but left++ works too
-                right--;
+                //If nums[start] == nums[mid], just move start to the next index. 
+                //So the worst case, that the array's elements are same, is O(n).
+                left++;
             }
         }
         return false;
