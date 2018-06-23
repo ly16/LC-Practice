@@ -15,7 +15,7 @@ Follow up:
 This is a follow up problem to Search in Rotated Sorted Array, where nums may contain duplicates.
 Would this affect the run-time complexity? How and why?
 
-time = O(logn) = O(n) when they are all the same
+time = O(n) when they are all the same, but normal case is O(logn)
 space - O(1)
 */
 
