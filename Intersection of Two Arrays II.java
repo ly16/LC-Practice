@@ -13,8 +13,8 @@ What if nums1's size is small compared to nums2's size? Which algorithm is bette
 What if elements of nums2 are stored on disk, and the memory is limited such that 
 you cannot load all elements into the memory at once?
 
-time = O(n)
-space = O(n)
+time = O(n) by hashMap, time = O(nlogn) by sorting
+space = O(n)for the arrayList
 */
 
 class Solution {
@@ -42,6 +42,38 @@ class Solution {
         int[] res = new int[result.size()];
         for (int i = 0; i < result.size(); i++) {
             res[i] = result.get(i);
+        }
+        return res;
+    }
+}
+
+// sort version
+class Solution {
+    public int[] intersect(int[] nums1, int[] nums2) {
+        if (nums1 == null || nums2 == null) {
+            return new int[0];
+        }
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+        int pnt1 = 0;
+        int pnt2 = 0;
+        ArrayList<Integer> myList = new ArrayList<Integer>();
+        while ((pnt1 < nums1.length) &&(pnt2< nums2.length)){
+            if(nums1[pnt1]<nums2[pnt2]){
+                pnt1++;
+            }
+            else if (nums1[pnt1]>nums2[pnt2]) {
+                pnt2++;
+            } else {
+                    myList.add(nums1[pnt1]);
+                    pnt1++;
+                    pnt2++;
+            }
+        }
+        
+        int[] res = new int[myList.size()];
+        for(int i = 0; i<myList.size(); i++){
+            res[i] = myList.get(i);
         }
         return res;
     }
