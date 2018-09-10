@@ -1,0 +1,60 @@
+/*
+Lowest Common Ancestor in Binary Tree (not guaranteed in tree)
+Given two nodes in a binary tree, find their lowest common ancestor (the given two nodes are not guaranteed to be in the binary tree).
+Return null If any of the nodes is not in the tree.
+There is no parent pointer for the nodes in the binary tree
+The given two nodes are not guaranteed to be in the binary tree
+Example
+        1
+      /   \
+     2     3
+   /  \      \
+  4    5      6
+The lowest common ancestor of 2 and 6 is 1
+The lowest common ancestor of 2 and 5 is 2
+The lowest common ancestor of 2 and 7 is null (7 is not in the tree)
+Approach:
+1. Normal LCA: 
+    - case 1: if root is null, return null
+    - case 2: if root is one of the nodes, return root
+    - case 3: if root's left and right both return a node (means both node found), root is the lca
+    - case 4: if only one of the child return a node, keep passing that node back up
+2. If result of normal lca is one of the two nodes:
+    - case 1: the other node is under the result node, this case the result node is the lca
+    - case 2: the other node is not under the result node, this case the other node is not in tree, no actual lca
+*/
+
+public class LCA {
+  public TreeNode lowestCommonAncestor(TreeNode root, TreeNode one, TreeNode two) {
+    TreeNode lca = lca(root, one, two);
+    if (lca == one) {
+      return find(one, two) == true ? lca : null;
+    } else if (lca == two) {
+      return find(two, one) == true ? lca : null;
+    }
+    return lca;
+  }
+  
+  private TreeNode lca(TreeNode root, TreeNode one, TreeNode two) {
+    if (root == null || root == one || root == two) {
+      return root;
+    }
+    TreeNode left = lca(root.left, one, two);
+    TreeNode right = lca(root.right, one, two);
+    if (left != null && right != null) {
+      return root;
+    }
+    return left == null ? right : left;
+  }
+  
+  // check if node is under root
+  private boolean find(TreeNode root, TreeNode node) {
+    if (root == null) {
+      return false;
+    }
+    if (root == node) {
+      return true;
+    }
+    return find(root.left, node) || find(root.right, node);
+  }
+}
